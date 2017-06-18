@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
+import { Card, CardTitle, CardText, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const iconSize = 100;
-const viewBox = '0 0 100 100'
 
-const CentralNavigationBarItem = (props) => {
-  const {title, description, Icon} = props.details;
+const CentralNavigationBarItem = ({details}) => {
+  const {title, description, Icon, path} = details;
   return (
       <div>
         <Card block>
@@ -13,7 +13,7 @@ const CentralNavigationBarItem = (props) => {
           
           <CardTitle>{title}</CardTitle>
           <CardText>{description}</CardText>
-          <Button>Button</Button>
+          <Button tag={Link} to={`${path}`}>Open</Button>
         </Card>
       </div>
   )

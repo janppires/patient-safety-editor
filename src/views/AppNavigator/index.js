@@ -1,11 +1,13 @@
 import React from 'react';
-import CentralNavigationBar from '../../components/CentralNavigationBar';
 import { Container } from 'reactstrap';
+import AppRouter from '../AppRouter';
+import AppNavBar from '../../components/AppNavBar';
 
 const AppNavigator = () => (
-    <Container fluid>
-         <CentralNavigationBar/>
-    </Container>
+  <Container>
+    <AppNavBar/>
+    <AppRouter/>
+  </Container>
 )
 
 export default AppNavigator;

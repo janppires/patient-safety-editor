@@ -9,12 +9,14 @@ const navigationItems = [
         title: 'Edit Topics',
         subtitle: 'blablba',
         description: 'Edit all the topics',
-        Icon: BorderColorIcon
+        Icon: BorderColorIcon,
+        path: '/edit'
     }, {
         title: 'Show Topics',
         subtitle: 'blebleble',
         description: 'Show all the topics',
-        Icon: FormatListBulletedIcon
+        Icon: FormatListBulletedIcon,
+        path: '/show'
     }
 ]
 
