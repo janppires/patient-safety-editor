@@ -1,12 +1,11 @@
 import React from 'react';
-import { Alert } from 'reactstrap';
+import CentralNavigationBar from '../../components/CentralNavigationBar';
+import { Container } from 'reactstrap';
 
 const AppNavigator = () => (
-    <div>
-         <Alert color="success">
-            <strong>Well done!</strong> You successfully read this important alert message.
-        </Alert> 
-    </div>
+    <Container fluid>
+         <CentralNavigationBar/>
+    </Container>
 )
 
 export default AppNavigator;
