@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppNavigator from './views/AppNavigator';
+import Root from './views/Root';
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 
-ReactDOM.render(<AppNavigator />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'));
 
