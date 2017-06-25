@@ -6,7 +6,8 @@ import {
 import { ConnectedRouter } from 'react-router-redux';
 import DashboardView from '../DashboardView';
 import TopicsView from '../TopicsView';
-import { AppNavBar, Footer } from '../../components';
+import { Footer } from '../../components';
+import { AppNavBar } from '../../containers';
 import styles from './styles';
 
 const AppNavigator = ({history}) => (
