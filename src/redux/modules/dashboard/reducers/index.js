@@ -1,14 +1,14 @@
 const INITIAL_STATE = [
     {
-        title: 'Edit Topics',
-        description: 'Edit all the topics',
+        title: 'Topics Editor',
+        description: 'Here you can create or modify topics and points content',
         icon: {name: 'MdBorderColor', height: 60},
-        path: '/edit'
+        path: '/topics'
     }, {
-        title: 'Show Topics',
-        description: 'Show all the topics',
-        icon: {name: 'MdFormatListBulleted', height: 70},
-        path: '/show'
+        title: 'Images Manager',
+        description: 'Here you can list existing images and remove deprecaded ones',
+        icon: {name: 'MdCameraRoll', height: 65},
+        path: '/images'
     }
 ]
 
