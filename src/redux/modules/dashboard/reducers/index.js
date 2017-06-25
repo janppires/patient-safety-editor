@@ -1,15 +1,13 @@
 const INITIAL_STATE = [
     {
         title: 'Edit Topics',
-        subtitle: 'blablba',
         description: 'Edit all the topics',
-        icon: {name: 'MdBorderColor'},
+        icon: {name: 'MdBorderColor', height: 60},
         path: '/edit'
     }, {
         title: 'Show Topics',
-        subtitle: 'blebleble',
         description: 'Show all the topics',
-        icon: {name: 'MdFormatListBulleted'},
+        icon: {name: 'MdFormatListBulleted', height: 70},
         path: '/show'
     }
 ]

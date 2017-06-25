@@ -9,13 +9,14 @@ const DashboardView = ({dashboardItems}) => {
     return (
     <div style={styles.container}>
         <Jumbotron>
-            <h1>Welcome to Patient Safety content management app.</h1>
+            <h1 className="display-4">Patient Safety Manual Editor</h1>
+            <p className="lead">This App is a support tool, provided for reference only.</p>
+            <hr className="my-2" />
+            <p>It is your responsability to ensure you are using the most up to date version of this application.</p>
             <div style={styles.content}>
                 <Dashboard items={dashboardItems}/>
             </div>
         </Jumbotron>
-        
-        
     </div>
 )}
 

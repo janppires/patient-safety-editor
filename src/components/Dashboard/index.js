@@ -1,31 +1,20 @@
-import React, { PropTypes } from 'react';
-import { Col, Row, Card, CardTitle, CardText, Button } from 'reactstrap';
+import React, { Component, PropTypes } from 'react';
+import { Col, Row, Card, CardTitle, CardText, Tooltip, Button as Button2 } from 'reactstrap';
+import Button from '../Button';
 import { Link } from 'react-router-dom';
 import Icon from '../Icon';
-
-const navigationItems = [
-    {
-        title: 'Edit Topics',
-        subtitle: 'blablba',
-        description: 'Edit all the topics',
-        icon: {name: 'MdBorderColor'},
-        path: '/edit'
-    }, {
-        title: 'Show Topics',
-        subtitle: 'blebleble',
-        description: 'Show all the topics',
-        icon: {name: 'MdFormatListBulleted'},
-        path: '/show'
-    }
-]
+import styles from './styles';
 
 const DashboardCard = ({title, description, icon, path}) => {
+  const tooltip = {
+    text: description
+  }
   return (
     <Card block>
-      <Icon width='100%' {...icon}/>
-      <CardTitle>{title}</CardTitle>
-      <CardText>{description}</CardText>
-      <Button tag={Link} to={path}>Open</Button>
+      <div style={styles.icon}>
+        <Icon width='100%' {...icon}/>
+      </div>
+      <Button id={title} tag={Link} to={path} tooltip={tooltip}>{title}</Button>
     </Card>
   )
 }
