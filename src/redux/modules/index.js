@@ -1,8 +1,7 @@
-import { combineReducers } from 'redux';
 import topics from './topics/reducers';
+import dashboard from './dashboard/reducers'
 
-const rootReducer = combineReducers({
-    topics
-})
-
-export default rootReducer;
+export default {
+    topics,
+    dashboard
+};

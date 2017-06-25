@@ -8,6 +8,11 @@ const Icon = ({name, ...props}) => {
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
+  height: PropTypes.number,
+}
+
+Icon.defaultProps = {
+  height: 50
 }
 
 export default Icon;
