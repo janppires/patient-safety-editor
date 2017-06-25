@@ -1,15 +1,16 @@
 import React from 'react';
 import { Card, CardTitle, CardText, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import Icon from '../Icon';
 
-const iconSize = 100;
+const iconSize = 50;
 
 const CentralNavigationBarItem = ({details}) => {
-  const {title, description, Icon, path} = details;
+  const {title, description, icon, path} = details;
   return (
       <div>
         <Card block>
-          <Icon width='100%' height={iconSize} />
+          <Icon name={icon} width='100%' height={iconSize}/>
           
           <CardTitle>{title}</CardTitle>
           <CardText>{description}</CardText>
