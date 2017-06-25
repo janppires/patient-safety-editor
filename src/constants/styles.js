@@ -30,8 +30,8 @@ const NHS_YELLOW = '#FAE100'
 const NHS_EURO_AMBULANCE_YELLOW = '#EDFF21'
 
 export const colors = {
-    primary: NHS_DARK_GREEN,
-    primaryAccent: NHS_LIGHT_GREEN,
+    primary: NHS_LIGHT_GREEN,
+    primaryAccent: NHS_DARK_GREEN,
     secundary : NHS_GREEN,
     darkGray: NHS_DARK_GRAY,
     paleGray: NHS_PALE_GRAY,
