@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container } from 'reactstrap';
-import {
-  Route
-} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import DashboardView from '../DashboardView';
 import TopicsView from '../TopicsView';

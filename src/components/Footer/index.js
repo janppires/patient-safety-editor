@@ -4,7 +4,7 @@ import styles from './styles';
 
 export default () => {
   return (
-    <div className='footer' style={styles.footer}>
+    <div className='footer'>
       <Container>
         <Row>
           <Col>

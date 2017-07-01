@@ -6,7 +6,7 @@ import NHSLogo from '../NHSLogo';
 const AppNavBar = ({isOpen, toggle}) => {
   return (
     <Container>
-      <Navbar style={styles.navBar} color="faded" light toggleable fixed='top'>
+      <Navbar color="faded" light toggleable fixed='top'>
         <NavbarToggler right onClick={toggle} />
         <NavbarBrand href="/">Patient Safety</NavbarBrand>
         <Collapse isOpen={isOpen} navbar>

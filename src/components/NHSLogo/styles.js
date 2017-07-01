@@ -1,5 +1,3 @@
-import { colors } from '../../constants/styles';
-
 const styles = {
   container: {
     display: 'flex',
@@ -14,7 +12,8 @@ const styles = {
   },
   subText: {
     marginTop: -6,
-    fontSize: 16
+    fontSize: 16,
+    color: '#005EB8',
   },
   image: {
   }

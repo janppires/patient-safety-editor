@@ -1,5 +1,3 @@
-import { colors } from '../../constants/styles';
-
 const styles = {
   container: {
     height: '100%',
@@ -9,6 +7,7 @@ const styles = {
   content: {
     height: '100%',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
   }
