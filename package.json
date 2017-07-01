@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "nhs-bootstrap": "../nhs-bootstrap",
     "history": "^4.6.3",
+    "nhs-bootstrap": "file:../nhs-bootstrap",
     "normalizr": "^3.2.3",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",

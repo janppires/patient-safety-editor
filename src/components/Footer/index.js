@@ -4,7 +4,7 @@ import styles from './styles';
 
 export default () => {
   return (
-    <div className='footer'>
+    <div className='sticky-footer bg-faded'>
       <Container>
         <Row>
           <Col>
