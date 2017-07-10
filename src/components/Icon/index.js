@@ -8,7 +8,10 @@ const Icon = ({name, ...props}) => {
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
-  height: PropTypes.number,
+  height: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+    ])
 }
 
 Icon.defaultProps = {
