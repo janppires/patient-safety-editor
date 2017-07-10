@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Route } from 'react-router-dom';
 import { Col, Row, Container } from 'reactstrap';
 import TopicsList from '../../components/TopicsList';
 import TopicsListHeaderContainer from '../../containers/TopicsListHeaderContainer';
 import PointsList from '../../components/PointsList';
+import { fetchTopics, setSelectedTopic } from '../../redux/modules/topics/actions';
+import { getTopics, getSelectedTopic } from '../../redux/modules/topics/reducers';
 import styles from './styles';
 
-const topics = [
-  {id: 1, name: 'funny topic', points: [{}]},
-  {id: 2, name: 'other', points: [{}]}
-];
-
-
-
 class TopicsView extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      selectedTopic: null
-    }
+  
+  componentWillMount() {
+    this.props.fetchTopics();
   }
+
   render() {
+    const { topics, selectedTopic, setSelectedTopic } = this.props;
     return (
       <Container className="bg-faded" style={styles.container}>
         <Row style={styles.row}>
           <Col xs="6">
             <TopicsListHeaderContainer/>
-            <TopicsList topics={topics} selectedTopic={this.state.selectedTopic} onSelectTopic={(topic) => this.setState({selectedTopic: topic})}/>
+            <TopicsList topics={topics} selectedTopic={selectedTopic} onSelectTopic={(topic) => setSelectedTopic(topic.id)}/>
           </Col>
           <Col xs="6">
             <p>Please select one Topic</p>
@@ -38,4 +34,21 @@ class TopicsView extends Component {
   }
 }
 
-export default TopicsView;
+const mapStateToProps = state => {
+  return {
+    topics: getTopics(state),
+    selectedTopic: getSelectedTopic(state)
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchTopics: () => dispatch(fetchTopics()),
+    setSelectedTopic: (id) => dispatch(setSelectedTopic(id))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopicsView)

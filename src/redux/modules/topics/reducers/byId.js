@@ -1,8 +1,8 @@
-import { GET_TOPICS } from '../actions';
+import { FETCH_TOPICS } from '../actions';
 
 export default function byId (state = {}, action) {
   switch (action.type) {
-    case GET_TOPICS:
+    case FETCH_TOPICS:
       return action.payload.entities.topics;
     default:
       return state

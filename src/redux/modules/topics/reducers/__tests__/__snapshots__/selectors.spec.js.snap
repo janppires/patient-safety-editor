@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`topics selectors get selected topic 1`] = `
+Object {
+  "name": "random 2",
+}
+`;
+
+exports[`topics selectors get topics array from state 1`] = `
+Array [
+  Object {
+    "name": "random",
+  },
+  Object {
+    "name": "random 2",
+  },
+]
+`;
+
+exports[`topics selectors get undefined topic when no topic is selected 1`] = `undefined`;
