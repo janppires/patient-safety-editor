@@ -7,15 +7,16 @@ describe("topics selectors", () => {
     expect(topics).toMatchSnapshot();
   });
 
-  test("get undefined topic when no topic is selected", () => {
+  test("get undefined topic when topicId is unknown", () => {
     const state = prepareStateWithTopics();
-    const topic = topicsSelector.getSelectedTopic(state);
+    const topic = topicsSelector.getTopic(state);
     expect(topic).toMatchSnapshot();
   });
 
-  test("get selected topic", () => {
-    const state = prepareStateWithTopicsAndSelectedTopic();
-    const topic = topicsSelector.getSelectedTopic(state);
+  test("get topic from id", () => {
+    const state = prepareStateWithTopics();
+    const topicId = 2;
+    const topic = topicsSelector.getTopic(state, topicId);
     expect(topic).toMatchSnapshot();
   });
 
@@ -25,14 +26,7 @@ describe("topics selectors", () => {
       byId: {
         1: { name: "random" },
         2: { name: "random 2" }
-      },
-      selected: null
+      }
     }
   });
-
-  const prepareStateWithTopicsAndSelectedTopic = () => {
-    const state = prepareStateWithTopics();
-    state.topics.selected = 2;
-    return state;
-  };
 });

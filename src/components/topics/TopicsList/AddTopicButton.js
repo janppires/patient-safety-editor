@@ -1,25 +1,20 @@
 import React, { PureComponent } from "react";
 import Button from "../../common/Button";
 
-class TopicsListHeader extends PureComponent {
+class AddTopicButton extends PureComponent {
   constructor(props) {
     super(props);
     this.tooltip = { text: "Add Topic" };
-    this.title = "Topics";
   }
-
   render() {
-    const { onAddTopic } = this.props;
+    const { onClick } = this.props;
     return (
-      <div className="d-flex justify-content-between align-items-center my-2">
-        <h2>
-          {this.title}
-        </h2>
+      <div>
         <Button
-          id={this.title}
+          id={"add-topic-button"}
           color="danger"
           tooltip={this.tooltip}
-          onClick={onAddTopic}
+          onClick={onClick}
         >
           +
         </Button>
@@ -28,4 +23,4 @@ class TopicsListHeader extends PureComponent {
   }
 }
 
-export default TopicsListHeader;
+export default AddTopicButton;

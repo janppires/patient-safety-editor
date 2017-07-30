@@ -1,37 +1,56 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import { ListGroup } from "reactstrap";
-import TopicItem from "../TopicItem";
-import styles from "./styles";
-
-const propTypes = {
-  style: PropTypes.object,
-  topics: PropTypes.array.isRequired
-};
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { getTopics, getTopic } from "../../../redux/modules/topics/reducers";
+import Header from "./Header";
+import TopicsListGroup from "./TopicsListGroup";
+import CreateTopicModal from "../CreateTopicModal";
 
 class TopicsList extends PureComponent {
-  isTopicActive = (topic, selectedTopic) => {
-    return topic === selectedTopic;
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+  }
+  handleToggleModal = () => {
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
+
+  handleSelectTopic = topic => {
+    this.props.history.push(`/topics/${topic.id}`);
   };
 
   render() {
-    const { style, topics, selectedTopic, onSelectTopic } = this.props;
-
+    const { topics, selectedTopic } = this.props;
     return (
-      <ListGroup style={{ ...style, ...styles.container }}>
-        {topics.map(topic =>
-          <TopicItem
-            key={topic.id}
-            topic={topic}
-            active={this.isTopicActive(topic, selectedTopic)}
-            onClick={() => onSelectTopic(topic)}
-          />
-        )}
-      </ListGroup>
+      <div>
+        <Header onAddTopic={this.handleToggleModal} />
+        <TopicsListGroup
+          topics={topics}
+          selectedTopic={selectedTopic}
+          onSelectTopic={this.handleSelectTopic}
+        />
+        <CreateTopicModal
+          toggle={this.handleToggleModal}
+          isOpen={this.state.modal}
+        />
+      </div>
     );
   }
 }
 
-TopicsList.propTypes = propTypes;
+const mapStateToProps = (state, props) => {
+  return {
+    topics: getTopics(state),
+    selectedTopic: getTopic(state, props.match.params.topicId)
+  };
+};
 
-export default TopicsList;
+const mapDispatchToProps = dispatch => ({});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TopicsList)
+);

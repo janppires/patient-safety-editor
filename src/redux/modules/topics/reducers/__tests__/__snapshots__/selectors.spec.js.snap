@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`topics selectors get selected topic 1`] = `
+exports[`topics selectors get topic from id 1`] = `
 Object {
   "name": "random 2",
 }
@@ -17,4 +17,4 @@ Array [
 ]
 `;
 
-exports[`topics selectors get undefined topic when no topic is selected 1`] = `undefined`;
+exports[`topics selectors get undefined topic when topicId is unknown 1`] = `undefined`;

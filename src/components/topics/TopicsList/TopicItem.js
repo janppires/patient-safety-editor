@@ -5,7 +5,6 @@ import {
   ListGroupItemHeading,
   ListGroupItemText
 } from "reactstrap";
-import styles from "./styles";
 
 const propTypes = {
   topic: PropTypes.object.isRequired
@@ -15,7 +14,11 @@ class TopicItem extends PureComponent {
   render() {
     const { topic, ...attributes } = this.props;
     return (
-      <ListGroupItem style={styles.container} tag="button" {...attributes}>
+      <ListGroupItem
+        className="d-flex flex-column align-items-start"
+        tag="button"
+        {...attributes}
+      >
         <ListGroupItemHeading>
           {topic.name}
         </ListGroupItemHeading>

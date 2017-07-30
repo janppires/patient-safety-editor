@@ -2,12 +2,10 @@ import { combineReducers } from "redux";
 
 import list from "./list";
 import byId from "./byId";
-import selected from "./selected";
 
 const topics = combineReducers({
   byId,
-  list,
-  selected
+  list
 });
 
 export default topics;
@@ -19,11 +17,9 @@ export const getTopics = state => {
   return ids.map(id => getTopicByIdState(state, id));
 };
 
-export const getSelectedTopic = state => {
-  const id = getSelectedTopicIdState(state);
+export const getTopic = (state, id) => {
   return getTopicByIdState(state, id);
 };
 
 const getIdsListState = state => state.topics.list;
 const getTopicByIdState = (state, id) => state.topics.byId[id];
-const getSelectedTopicIdState = state => state.topics.selected;
