@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import TopicsListHeader from '../TopicsListHeader';
 import CreateTopicModal from '../CreateTopicModal';
 
-class TopicsListHeaderContainer extends Component {
+class TopicsListHeaderContainer extends PureComponent {
    constructor(props) {
       super(props);
       this.state = {

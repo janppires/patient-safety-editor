@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Col, Row, Jumbotron } from 'reactstrap';
 import DashboardCard from '../DashboardCard';
 import { getDashboardItems } from '../../../redux/modules/dashboard';
 import styles from './styles';
 
-const renderCard = (data, index) => {
-  return (
-    <Col key={index}>
-      <DashboardCard {...data}/>
-    </Col>
-  )
-}
-
-const Dashboard = ({dashboardItems}) => {
+class Dashboard extends PureComponent {
+  render() {
+    const {dashboardItems} = this.props;
     return (
-    <div style={styles.container}>
+      <div style={styles.container}>
         <Jumbotron>
             <h1 className="display-4">Patient Safety Manual Editor</h1>
             <p className="lead">This App is a support tool, provided for reference only.</p>
@@ -23,12 +17,18 @@ const Dashboard = ({dashboardItems}) => {
             <p>It is your responsability to ensure you are using the most up to date version of this application.</p>
             <div style={styles.content}>
                 <Row>
-                  {dashboardItems.map(renderCard)}
+                  {dashboardItems.map((item, index) => 
+                    <Col key={index}>
+                      <DashboardCard {...item}/>
+                    </Col>
+                  )}
                 </Row>
             </div>
         </Jumbotron>
-    </div>
-)}
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = state => {
   return {

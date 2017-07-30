@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import Select from 'react-select';
 import Icon from '../Icon';
 
@@ -34,21 +34,23 @@ const renderValue = (option) => {
   );
 }
 
-const IconSelector = ({handleSelection, icon}) => {
-  let _inputValue;
-  return (
-    <div>
-      <Select
-        onInputChange={(inputValue) => _inputValue = inputValue}
-        options={options}
-        optionRenderer={renderOption}
-        onChange={handleSelection}
-        value={icon}
-        valueRenderer={renderValue}
-        placeholder='Choose icon...'
-        />
-    </div>
-  );
-};
+class IconSelector extends PureComponent {
+  render() {
+    const {handleSelection, icon} = this.props;
+    return (
+      <div>
+        <Select
+          onInputChange={(inputValue) => this._inputValue = inputValue}
+          options={options}
+          optionRenderer={renderOption}
+          onChange={handleSelection}
+          value={icon}
+          valueRenderer={renderValue}
+          placeholder='Choose icon...'
+          />
+      </div>
+    );
+  }
+}
 
 export default IconSelector;

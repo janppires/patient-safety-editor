@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import NHSLogo from '../../common/NHSLogo';
 
-class AppNavBar extends React.Component {
+class AppNavBar extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

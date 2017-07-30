@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 import IconsSelector from '../../common/IconsSelector';
@@ -19,7 +19,7 @@ const propTypes = {
   submit: PropTypes.func.isRequired
 };
 
-class ModifyTopicModal extends Component {
+class ModifyTopicModal extends PureComponent {
   constructor(props){
     super(props);
     this.state = {

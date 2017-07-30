@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import Dashboard from '../Dashboard';
 
-const HomePage = () => {
-  return (
-    <div>
-      <Dashboard/>
-    </div>
-  );
-};
+class HomePage extends PureComponent {
+  render() {
+    return (
+      <div>
+        <Dashboard/>
+      </div>
+    );
+  }
+}
 
 export default HomePage;

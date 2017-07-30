@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Button as StrapButton, Tooltip } from 'reactstrap';
 import styles from './styles';
 
-class Button extends Component {
+class Button extends PureComponent {
   constructor(props) {
     super(props);
 

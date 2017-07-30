@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
-const PointsList = () => (
-  <div>
-    <p>Choose a Topic</p>
-  </div>
-     
-)
+class PointsList extends PureComponent {
+  render() {
+    return (
+      <div>
+        <p>Choose a Topic</p>
+      </div>
+    )
+  }
+}
 
 export default PointsList;
