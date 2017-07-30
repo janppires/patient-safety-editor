@@ -1,9 +1,7 @@
-import configureStore, { history } from './store/configureStore';
+import configureStore, { history } from "./store/configureStore";
 
 const store = configureStore();
 
 export default store;
 
-export {
-  history
-}
+export { history };

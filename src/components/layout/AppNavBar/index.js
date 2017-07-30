@@ -1,6 +1,15 @@
-import React, { PureComponent } from 'react';
-import { Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import NHSLogo from '../../common/NHSLogo';
+import React, { PureComponent } from "react";
+import {
+  Container,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
+import NHSLogo from "../../common/NHSLogo";
 
 class AppNavBar extends PureComponent {
   constructor(props) {
@@ -13,11 +22,11 @@ class AppNavBar extends PureComponent {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
   render() {
     return (
       <Container>
-        <Navbar color="faded" light toggleable fixed='top'>
+        <Navbar color="faded" light toggleable fixed="top">
           <NavbarToggler right onClick={this.toggle} />
           <NavbarBrand href="/">Patient Safety</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -30,7 +39,7 @@ class AppNavBar extends PureComponent {
               </NavItem>
             </Nav>
           </Collapse>
-          <NHSLogo className='d-none d-md-flex'/>  
+          <NHSLogo className="d-none d-md-flex" />
         </Navbar>
       </Container>
     );

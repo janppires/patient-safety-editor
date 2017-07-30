@@ -1,17 +1,27 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Col } from 'reactstrap';
-import IconsSelector from '../../common/IconsSelector';
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import {
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col
+} from "reactstrap";
+import IconsSelector from "../../common/IconsSelector";
 
 const MODE_LABELS = {
-  edit: { titleText: 'Edit Topic', submitText: 'Modify' },
-  create: { titleText: 'Add New Topic', submitText: 'Add' }
-}
+  edit: { titleText: "Edit Topic", submitText: "Modify" },
+  create: { titleText: "Add New Topic", submitText: "Add" }
+};
 
 const defaultProps = {
-  topic: { name: '', icon: '' },
-  mode: 'create'
-}
+  topic: { name: "", icon: "" },
+  mode: "create"
+};
 
 const propTypes = {
   topic: PropTypes.object,
@@ -20,64 +30,68 @@ const propTypes = {
 };
 
 class ModifyTopicModal extends PureComponent {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       name: props.topic.name,
       icon: props.topic.icon,
       titleText: MODE_LABELS[props.mode].titleText,
       submitText: MODE_LABELS[props.mode].submitText
-    }
+    };
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.submit({
       name: this.state.name,
       icon: this.state.icon
-    })
+    });
     this.props.toggle();
-  }
+  };
 
-  handleTopicNameInput = (ev)  => {
+  handleTopicNameInput = ev => {
     this.setState({
       name: ev.target.value
-    })
-  }
+    });
+  };
 
-  handleIconChange = (icon) => {
+  handleIconChange = icon => {
     this.setState({
-      icon: icon ? icon.value : ''
-    })
-  }
+      icon: icon ? icon.value : ""
+    });
+  };
 
   isValidName = () => {
     return this.state.name.length > 3;
-  }
+  };
 
   isValidIcon = () => {
     return this.state.icon.length > 0;
-  }
+  };
 
   isValidForm = () => {
-    return this.isValidName() && this.isValidIcon()
-  }
+    return this.isValidName() && this.isValidIcon();
+  };
 
   render() {
-    const {isOpen, toggle} = this.props;
-    const {titleText, submitText} = this.state;
+    const { isOpen, toggle } = this.props;
+    const { titleText, submitText } = this.state;
 
     return (
       <div>
         <Modal isOpen={isOpen} toggle={toggle}>
-          <ModalHeader toggle={toggle}>{titleText}</ModalHeader>
+          <ModalHeader toggle={toggle}>
+            {titleText}
+          </ModalHeader>
           <ModalBody>
             <Form>
               <FormGroup row>
-                <Label for="topicName" sm={2}>Name</Label>
+                <Label for="topicName" sm={2}>
+                  Name
+                </Label>
                 <Col sm={10}>
-                  <Input 
-                    type="text" 
+                  <Input
+                    type="text"
                     name="topicName"
                     id="topicName"
                     placeholder="Type topic name..."
@@ -87,14 +101,25 @@ class ModifyTopicModal extends PureComponent {
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="topicIcon" sm={2}>Icon</Label>
+                <Label for="topicIcon" sm={2}>
+                  Icon
+                </Label>
                 <Col sm={10}>
-                  <IconsSelector handleSelection={this.handleIconChange} icon={this.state.icon}/>
+                  <IconsSelector
+                    handleSelection={this.handleIconChange}
+                    icon={this.state.icon}
+                  />
                 </Col>
               </FormGroup>
               <FormGroup check row>
                 <Col sm={{ size: 10, offset: 2 }}>
-                  <Button color='danger' disabled={!this.isValidForm()} onClick={this.handleSubmit}>{submitText}</Button>
+                  <Button
+                    color="danger"
+                    disabled={!this.isValidForm()}
+                    onClick={this.handleSubmit}
+                  >
+                    {submitText}
+                  </Button>
                 </Col>
               </FormGroup>
             </Form>

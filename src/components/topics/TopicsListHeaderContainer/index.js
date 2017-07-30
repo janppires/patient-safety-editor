@@ -1,25 +1,28 @@
-import React, { PureComponent } from 'react';
-import TopicsListHeader from '../TopicsListHeader';
-import CreateTopicModal from '../CreateTopicModal';
+import React, { PureComponent } from "react";
+import TopicsListHeader from "../TopicsListHeader";
+import CreateTopicModal from "../CreateTopicModal";
 
 class TopicsListHeaderContainer extends PureComponent {
-   constructor(props) {
-      super(props);
-      this.state = {
-        modal: false
-      };
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
   }
   handleToggleModal = () => {
     this.setState({
       modal: !this.state.modal
     });
-  }
+  };
 
   render() {
     return (
       <div>
-        <TopicsListHeader onAddTopic={this.handleToggleModal}/>
-        <CreateTopicModal toggle={this.handleToggleModal} isOpen={this.state.modal}/>
+        <TopicsListHeader onAddTopic={this.handleToggleModal} />
+        <CreateTopicModal
+          toggle={this.handleToggleModal}
+          isOpen={this.state.modal}
+        />
       </div>
     );
   }

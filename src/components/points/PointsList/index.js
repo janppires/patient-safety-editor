@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from "react";
 
 class PointsList extends PureComponent {
   render() {
@@ -6,7 +6,7 @@ class PointsList extends PureComponent {
       <div>
         <p>Choose a Topic</p>
       </div>
-    )
+    );
   }
 }
 

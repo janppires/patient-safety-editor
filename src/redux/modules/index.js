@@ -1,7 +1,7 @@
-import topics from './topics/reducers';
-import dashboard from './dashboard/reducers'
+import topics from "./topics/reducers";
+import dashboard from "./dashboard/reducers";
 
 export default {
-    topics,
-    dashboard
+  topics,
+  dashboard
 };

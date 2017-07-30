@@ -1,3 +1,3 @@
-export const getDashboardItems = (state) => {
-    return state.dashboard;
-}
+export const getDashboardItems = state => {
+  return state.dashboard;
+};
