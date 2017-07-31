@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { ListGroup } from "reactstrap";
 import TopicItem from "./TopicItem";
 
-const propTypes = {
-  topics: PropTypes.array.isRequired,
-  selectedTopic: PropTypes.object,
-  onSelectTopic: PropTypes.func.isRequired
-};
-
 class TopicsListGroup extends PureComponent {
+  static propTypes = {
+    topics: PropTypes.array.isRequired,
+    selectedTopic: PropTypes.object,
+    onSelectTopic: PropTypes.func.isRequired
+  };
+
   isTopicActive = (topic, selectedTopic) => {
     return topic === selectedTopic;
   };
@@ -31,7 +31,5 @@ class TopicsListGroup extends PureComponent {
     );
   }
 }
-
-TopicsListGroup.propTypes = propTypes;
 
 export default TopicsListGroup;

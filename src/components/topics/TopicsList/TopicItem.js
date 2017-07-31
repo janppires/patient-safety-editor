@@ -11,6 +11,12 @@ const propTypes = {
 };
 
 class TopicItem extends PureComponent {
+  renderPointsText = topic => {
+    return topic.points
+      ? `Has ${topic.points.length} points`
+      : "No points added!";
+  };
+
   render() {
     const { topic, ...attributes } = this.props;
     return (
@@ -23,7 +29,7 @@ class TopicItem extends PureComponent {
           {topic.name}
         </ListGroupItemHeading>
         <ListGroupItemText>
-          Has {topic.points.length} points
+          {this.renderPointsText(topic)}
         </ListGroupItemText>
       </ListGroupItem>
     );

@@ -1,9 +1,11 @@
-import { FETCH_TOPICS } from "../actions";
+import { FETCH_TOPICS, ADD_TOPIC } from "../actions";
 
-export default function byId(state = {}, action) {
-  switch (action.type) {
+export default function byId(state = {}, { type, payload }) {
+  switch (type) {
     case FETCH_TOPICS:
-      return action.payload.entities.topics;
+      return payload.entities.topics;
+    case ADD_TOPIC:
+      return Object.assign({}, state, { [payload.id]: payload });
     default:
       return state;
   }

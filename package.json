@@ -5,6 +5,7 @@
   "dependencies": {
     "history": "^4.6.3",
     "nhs-bootstrap": "file:../nhs-bootstrap",
+    "node-uuid": "^1.4.8",
     "normalizr": "^3.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",

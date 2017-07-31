@@ -2,11 +2,10 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { getTopics, getTopic } from "../../../redux/modules/topics/reducers";
-import Header from "./Header";
-import TopicsListGroup from "./TopicsListGroup";
-import CreateTopicModal from "../CreateTopicModal";
+import { addTopic } from "../../../redux/modules/topics/actions";
+import TopicsList from "./TopicsList";
 
-class TopicsList extends PureComponent {
+class TopicsListContainer extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,18 +23,16 @@ class TopicsList extends PureComponent {
   };
 
   render() {
-    const { topics, selectedTopic } = this.props;
+    const { topics, selectedTopic, addTopic } = this.props;
     return (
       <div>
-        <Header onAddTopic={this.handleToggleModal} />
-        <TopicsListGroup
+        <TopicsList
           topics={topics}
           selectedTopic={selectedTopic}
+          toggleAddTopicModal={this.handleToggleModal}
           onSelectTopic={this.handleSelectTopic}
-        />
-        <CreateTopicModal
-          toggle={this.handleToggleModal}
-          isOpen={this.state.modal}
+          isAddTopicModalOpen={this.state.modal}
+          addTopic={addTopic}
         />
       </div>
     );
@@ -49,8 +46,10 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  addTopic: topic => dispatch(addTopic(topic))
+});
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(TopicsList)
+  connect(mapStateToProps, mapDispatchToProps)(TopicsListContainer)
 );

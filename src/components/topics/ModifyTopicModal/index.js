@@ -18,18 +18,17 @@ const MODE_LABELS = {
   create: { titleText: "Add New Topic", submitText: "Add" }
 };
 
-const defaultProps = {
-  topic: { name: "", icon: "" },
-  mode: "create"
-};
-
-const propTypes = {
-  topic: PropTypes.object,
-  mode: PropTypes.string,
-  submit: PropTypes.func.isRequired
-};
-
 class ModifyTopicModal extends PureComponent {
+  static propTypes = {
+    topic: PropTypes.object,
+    mode: PropTypes.string,
+    submit: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    mode: "create"
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -46,6 +45,7 @@ class ModifyTopicModal extends PureComponent {
       name: this.state.name,
       icon: this.state.icon
     });
+    this.setState({ name: "", icon: "" });
     this.props.toggle();
   };
 
@@ -129,8 +129,5 @@ class ModifyTopicModal extends PureComponent {
     );
   }
 }
-
-ModifyTopicModal.defaultProps = defaultProps;
-ModifyTopicModal.propTypes = propTypes;
 
 export default ModifyTopicModal;

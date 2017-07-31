@@ -1,19 +1,31 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
+import UUID from "node-uuid";
 import ModifyTopicModal from "../ModifyTopicModal";
 
-class CreateTopicModal extends Component {
+const getEmptyTopic = () => ({
+  name: "",
+  icon: ""
+});
+
+class CreateTopicModal extends PureComponent {
+  static propTypes = {
+    toggle: PropTypes.func.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    submit: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
-      topic: {
-        name: "",
-        icon: ""
-      }
+      topic: getEmptyTopic()
     };
   }
 
   handleSubmit = topic => {
-    console.log("weeee", topic);
+    const newTopic = Object.assign({}, topic, { id: UUID.v4() });
+    this.props.submit(newTopic);
+    this.setState({ topic: getEmptyTopic() });
   };
 
   render() {
