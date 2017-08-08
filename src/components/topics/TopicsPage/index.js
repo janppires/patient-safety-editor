@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route } from "react-router-dom";
 import { Col, Row, Container } from "reactstrap";
 import TopicsList from "../TopicsList";
-import PointsList from "../../points/PointsList";
+import PointsList from "../PointsList";
 import { fetchTopics } from "../../../redux/modules/topics/actions";
 import styles from "./styles";
 
@@ -12,16 +11,20 @@ class TopicsPage extends Component {
     this.props.fetchTopics();
   }
 
+  isTopicSelected = () => {
+    return this.props.match.params.topicId !== undefined;
+  };
+
   render() {
+    const showPointsList = this.isTopicSelected();
     return (
       <Container className="bg-faded" style={styles.container}>
         <Row style={styles.row}>
           <Col xs="6">
             <TopicsList />
           </Col>
-          <Col xs="6">
-            <p>Please select one Topic</p>
-            <Route path={this.props.match.url + "/5"} component={PointsList} />
+          <Col xs="6" className="d-flex flex-column justify-content-center">
+            {showPointsList ? <PointsList /> : <p>Please select one topic</p>}
           </Col>
         </Row>
       </Container>

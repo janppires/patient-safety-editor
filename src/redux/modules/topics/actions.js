@@ -6,7 +6,7 @@ const topic = new schema.Entity("topics");
 const topicsSchema = [topic];
 const topics = [
   { id: 1, name: "funny topic", points: [{}] },
-  { id: 2, name: "other", points: [{}] }
+  { id: 5, name: "other", points: [{}] }
 ];
 
 export const fetchTopics = () => {

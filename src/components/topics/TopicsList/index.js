@@ -29,9 +29,9 @@ class TopicsListContainer extends PureComponent {
         <TopicsList
           topics={topics}
           selectedTopic={selectedTopic}
-          toggleAddTopicModal={this.handleToggleModal}
+          toggleAddTopicDialog={this.handleToggleModal}
           onSelectTopic={this.handleSelectTopic}
-          isAddTopicModalOpen={this.state.modal}
+          isAddTopicDialogOpen={this.state.modal}
           addTopic={addTopic}
         />
       </div>

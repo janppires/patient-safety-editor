@@ -1,17 +1,17 @@
 import React, { PureComponent } from "react";
-import Button from "../../common/Button";
+import Button from "./Button";
 
-class AddTopicButton extends PureComponent {
+class AddItemButton extends PureComponent {
   constructor(props) {
     super(props);
-    this.tooltip = { text: "Add Topic" };
+    this.tooltip = { text: props.tooltip };
   }
   render() {
     const { onClick } = this.props;
     return (
       <div>
         <Button
-          id={"add-topic-button"}
+          id={"add-item-button"}
           color="danger"
           tooltip={this.tooltip}
           onClick={onClick}
@@ -23,4 +23,4 @@ class AddTopicButton extends PureComponent {
   }
 }
 
-export default AddTopicButton;
+export default AddItemButton;

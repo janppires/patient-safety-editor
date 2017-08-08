@@ -1,14 +1,14 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import UUID from "node-uuid";
-import ModifyTopicModal from "../ModifyTopicModal";
+import ModifyTopicDialog from "../ModifyTopicDialog";
 
 const getEmptyTopic = () => ({
   name: "",
   icon: ""
 });
 
-class CreateTopicModal extends PureComponent {
+class CreateTopicDialog extends PureComponent {
   static propTypes = {
     toggle: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
@@ -31,7 +31,7 @@ class CreateTopicModal extends PureComponent {
   render() {
     return (
       <div>
-        <ModifyTopicModal
+        <ModifyTopicDialog
           mode="create"
           submit={this.handleSubmit}
           topic={this.state.topic}
@@ -43,4 +43,4 @@ class CreateTopicModal extends PureComponent {
   }
 }
 
-export default CreateTopicModal;
+export default CreateTopicDialog;
