@@ -1,5 +1,5 @@
-import topics from "./topics/reducers";
-import dashboard from "./dashboard/reducers";
+import topics from "redux/modules/topics";
+import dashboard from "redux/modules/dashboard";
 
 export default {
   topics,

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Col, Row, Container } from "reactstrap";
 import TopicsList from "components/topics/list";
 import PointsList from "components/points/list";
-import { fetchTopics } from "redux/modules/topics/actions";
+import { fetchTopics } from "redux/modules/topics";
 
 export class TopicsPage extends Component {
   static propTypes = {

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reducer: topics.byId  adds new topic by id to empty state 1`] = `
+Object {
+  "byId": Object {
+    "2": Object {
+      "id": 2,
+      "name": "random name",
+    },
+  },
+  "list": Array [
+    2,
+  ],
+}
+`;
+
+exports[`reducer: topics.byId  adds new topic by id to existing state 1`] = `
+Object {
+  "byId": Object {
+    "2": Object {
+      "id": 2,
+      "name": "random name",
+    },
+    "33": Object {
+      "id": 33,
+      "name": "other 33 topic",
+    },
+  },
+  "list": Array [
+    33,
+    2,
+  ],
+}
+`;
+
+exports[`topics selectors get topic from id 1`] = `
+Object {
+  "name": "random 2",
+}
+`;
+
+exports[`topics selectors get topics array from state 1`] = `
+Array [
+  Object {
+    "name": "random",
+  },
+  Object {
+    "name": "random 2",
+  },
+]
+`;
+
+exports[`topics selectors get undefined topic when topicId is unknown 1`] = `undefined`;

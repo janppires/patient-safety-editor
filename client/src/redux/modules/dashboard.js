@@ -1,4 +1,4 @@
-const INITIAL_STATE = [
+const initialState = [
   {
     title: "Topics Editor",
     description: "Here you can create or modify topics and points content",
@@ -13,6 +13,10 @@ const INITIAL_STATE = [
   }
 ];
 
-export default function dashboard(state = INITIAL_STATE, action) {
+export default function reducer(state = initialState, action) {
   return state;
 }
+
+export const getDashboardItems = globalState => {
+  return globalState.dashboard;
+};
