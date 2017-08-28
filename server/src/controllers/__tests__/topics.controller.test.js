@@ -3,7 +3,7 @@ describe("topics controller", function() {
     jest.resetModules();
   });
 
-  it("gets all topics", async () => {
+  test("gets all topics", async () => {
     // Arrange
     const topicsMock = [{ name: "random name" }];
     const { Topic, topicsController } = prepareTopicsControllerWithData(
@@ -19,7 +19,7 @@ describe("topics controller", function() {
     expect(res.end).toHaveBeenCalled();
   });
 
-  it("get topic by id", async () => {
+  test("get topic by id", async () => {
     // Arrange
     const topicMock = { name: "random name" };
     const { Topic, topicsController } = prepareTopicsControllerWithData(
@@ -35,7 +35,7 @@ describe("topics controller", function() {
     expect(res.end).toHaveBeenCalled();
   });
 
-  it("creates new topic", async () => {
+  test("creates new topic", async () => {
     // Arrange
     const topicMock = { name: "random name" };
     const { Topic, topicsController } = prepareTopicsControllerWithData(
@@ -46,7 +46,7 @@ describe("topics controller", function() {
     const res = { json: jest.fn(), end: jest.fn() };
     await topicsController.create()(req, res);
     // Assert
-    expect(Topic.save).toHaveBeenCalledWith({ topic: { name: "new name" } });
+    expect(Topic.create).toHaveBeenCalledWith({ topic: { name: "new name" } });
     expect(res.json).toHaveBeenCalledWith({ name: "random name" });
     expect(res.end).toHaveBeenCalled();
   });
@@ -73,13 +73,13 @@ const prepareResolvedTopicModelMock = mockedData => {
           resolve(mockedData);
         })
     );
-    const save = jest.fn(
+    const create = jest.fn(
       () =>
         new Promise((resolve, reject) => {
           resolve(mockedData);
         })
     );
-    return jest.fn(() => ({ find, findById, save }));
+    return jest.fn(() => ({ find, findById, create }));
   });
 };
 

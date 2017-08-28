@@ -2,8 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import createDatabase from "config/db";
-import topicsRoute from "routes/topics.route";
-import pointsRoute from "routes/points.route";
+import Routes from "routes";
 
 const database = createDatabase("mongodb://127.0.0.1:27017/patient_safety");
 
@@ -12,8 +11,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 database.then(conn => {
-  app.use(topicsRoute(conn));
-  app.use(pointsRoute(conn));
+  app.use(Routes.topics(conn));
+  app.use(Routes.points(conn));
+  app.use(Routes.images(conn));
 });
 
 app.use(function(err, req, res, next) {

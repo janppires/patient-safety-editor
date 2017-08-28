@@ -3,7 +3,7 @@ describe("points controller", function() {
     jest.resetModules();
   });
 
-  it("get specific point by id", async () => {
+  test("get specific point by id", async () => {
     // Arrange
     const mockedTopic = { points: [{ _id: 4, name: "random" }] };
     const { Topic, pointsController } = preparePointsControllerWithValidData(
@@ -21,7 +21,7 @@ describe("points controller", function() {
     expect(res.end).toHaveBeenCalled();
   });
 
-  it("handle errors and returns 500 code", async () => {
+  test("handle errors and returns 500 code", async () => {
     // Arrange
     const error = { message: "random error" };
     const { pointsController } = preparePointsControllerWithError(error);

@@ -29,7 +29,7 @@ export const create = conn => {
   const Topic = TopicModel(conn);
   return (req, res) => {
     const topic = req.body;
-    return Topic.save(topic)
+    return Topic.create(topic)
       .then(newTopic => res.json(newTopic))
       .catch(handleError(res))
       .finally(() => res.end());

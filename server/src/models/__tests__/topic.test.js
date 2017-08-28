@@ -12,7 +12,7 @@ describe("topic model", function() {
     done();
   });
 
-  it("should be invalid if name is empty", function(done) {
+  test("should be invalid if name is empty", function(done) {
     let Topic = TopicModel(conn);
     let m = new Topic();
 
@@ -22,20 +22,20 @@ describe("topic model", function() {
     });
   });
 
-  it("should add createdOn property", () => {
+  test("should add createdOn property", () => {
     let Topic = TopicModel(conn);
     let m = new Topic({ name: "random" });
     expect(m.createdOn).toBeDefined();
   });
 
-  it("should have empty points array", () => {
+  test("should have empty points array", () => {
     let Topic = TopicModel(conn);
     let m = new Topic({ name: "random" });
     expect(m.points).toBeDefined();
     expect(m.points).toEqual(expect.arrayContaining([]));
   });
 
-  it("should be invalid if a point name is empty", done => {
+  test("should be invalid if a point name is empty", done => {
     let Topic = TopicModel(conn);
     let m = new Topic({ name: "random", points: [{}] });
     m.validate(function(err) {
