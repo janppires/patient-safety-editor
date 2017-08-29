@@ -1,8 +1,10 @@
 import express from "express";
-import upload from "services/multer-config";
+import multer from "multer";
 import { get, uploadImage } from "controllers/images.controller";
 
 const router = express.Router();
+var storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 export default dbConn => {
   router.route("/images/:imageId").get(get(dbConn));

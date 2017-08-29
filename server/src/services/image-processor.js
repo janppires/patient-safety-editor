@@ -1,11 +1,10 @@
 import sharp from "sharp";
 
-export const convertImageToData = (file, options = {}) => {
-  const { path, mimetype } = file;
-
+export const formatToPng = (file, options = {}) => {
+  const { buffer } = file;
   const { width = 600 } = options;
 
-  return sharp(path)
+  return sharp(buffer)
     .resize(width)
     .png()
     .toBuffer()

@@ -20,4 +20,20 @@ const ImageSchema = new Schema({
   createdOn: { type: Date, default: Date.now }
 });
 
-export default conn => conn.model(IMAGE_MODEL_NAME, ImageSchema);
+const ImageModel = conn => conn.model(IMAGE_MODEL_NAME, ImageSchema);
+
+export default ImageModel;
+
+//
+// selectors
+
+export const getImageById = (conn, imageId) => {
+  const Image = ImageModel(conn);
+  return Image.findById(imageId);
+};
+
+export const saveImage = (conn, image, description) => {
+  image.description = description;
+  const Image = ImageModel(conn);
+  return Image.create(image);
+};
