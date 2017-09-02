@@ -1,21 +1,23 @@
-import TopicModel from "models/topic";
+import { findOnePoint, findOnePointAndUpdate } from "models/topic";
 import { handleError } from "controllers/utils";
 
-export const get = conn => {
-  const Topic = TopicModel(conn);
-  return (req, res) => {
-    const { pointId } = req.params;
+export const get = (req, res) => {
+  const { pointId } = req.params;
 
-    const conditions = {
-      points: { $elemMatch: { _id: pointId } }
-    };
+  return findOnePoint(pointId)
+    .then(point => res.json(point))
+    .catch(handleError(res));
+};
 
-    return Topic.findOne(conditions)
-      .then(topic => {
-        const points = topic.points.filter(point => point._id == pointId);
-        res.json(points[0]);
-      })
-      .catch(handleError(res))
-      .finally(() => res.end());
-  };
+export const update = (req, res) => {
+  const { pointId } = req.params;
+  const point = req.body;
+  return findOnePointAndUpdate(pointId, point)
+    .then(() => res.end())
+    .catch(handleError(res));
+};
+
+export default {
+  get,
+  update
 };

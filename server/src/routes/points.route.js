@@ -1,10 +1,8 @@
 import express from "express";
-import { get } from "controllers/points.controller";
+import PointsCtrl from "controllers/points.controller";
 
 const router = express.Router();
 
-export default dbConn => {
-  router.route("/points/:pointId").get(get(dbConn));
+router.route("/points/:pointId").get(PointsCtrl.get).put(PointsCtrl.update);
 
-  return router;
-};
+export default router;

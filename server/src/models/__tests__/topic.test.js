@@ -1,20 +1,19 @@
-import mongoose from "mongoose";
-import createDatabase from "config/db";
-import TopicModel from "models/topic";
-
-mongoose.Promise = global.Promise;
+import setupDatabase from "database/setup";
 
 let conn = null;
 
 describe("topic model", function() {
-  beforeAll(async done => {
-    conn = await createDatabase("mongodb://localhost/testDatabase");
-    done();
+  beforeAll(async () => {
+    await prepareDatabase();
+  });
+
+  beforeEach(done => {
+    conn.db.dropDatabase(() => done());
   });
 
   test("should be invalid if name is empty", function(done) {
-    let Topic = TopicModel(conn);
-    let m = new Topic();
+    const TopicModel = require("models/topic").default;
+    const m = new TopicModel();
 
     m.validate(function(err) {
       expect(err.errors.name).toBeDefined();
@@ -23,21 +22,21 @@ describe("topic model", function() {
   });
 
   test("should add createdOn property", () => {
-    let Topic = TopicModel(conn);
-    let m = new Topic({ name: "random" });
+    const TopicModel = require("models/topic").default;
+    const m = new TopicModel({ name: "random" });
     expect(m.createdOn).toBeDefined();
   });
 
   test("should have empty points array", () => {
-    let Topic = TopicModel(conn);
-    let m = new Topic({ name: "random" });
+    const TopicModel = require("models/topic").default;
+    const m = new TopicModel({ name: "random" });
     expect(m.points).toBeDefined();
     expect(m.points).toEqual(expect.arrayContaining([]));
   });
 
   test("should be invalid if a point name is empty", done => {
-    let Topic = TopicModel(conn);
-    let m = new Topic({ name: "random", points: [{}] });
+    const TopicModel = require("models/topic").default;
+    const m = new TopicModel({ name: "random", points: [{}] });
     m.validate(function(err) {
       expect(err.errors["points.0.name"]).toBeDefined();
       done();
@@ -45,11 +44,13 @@ describe("topic model", function() {
   });
 
   //After all tests are finished drop database and close connection
-  afterAll(function(done) {
-    conn.db.dropDatabase(function() {
-      conn.close(() => {
-        done();
-      });
-    });
+  afterAll(done => {
+    conn.close(() => done());
   });
 });
+
+const prepareDatabase = async () => {
+  conn = await setupDatabase("mongodb://localhost/testDatabase");
+  jest.doMock("database", () => conn);
+  return conn;
+};

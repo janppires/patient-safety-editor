@@ -1,23 +1,22 @@
-import mongoose from "mongoose";
 import fs from "fs";
-import createDatabase from "config/db";
-import ImageModel from "models/image";
-
-mongoose.Promise = global.Promise;
+import setupDatabase from "database/setup";
 
 let conn = null;
 
 describe("image model", function() {
-  beforeAll(async done => {
-    conn = await createDatabase("mongodb://localhost/testDatabase");
-    done();
+  beforeAll(async () => {
+    await prepareDatabase();
+  });
+
+  beforeEach(done => {
+    conn.db.dropDatabase(() => done());
   });
 
   test("should be invalid if data, contentType and description fields are missing", function(
     done
   ) {
-    const Image = ImageModel(conn);
-    const m = new Image();
+    const ImageModel = require("models/image").default;
+    const m = new ImageModel();
 
     m.validate(function(err) {
       expect(err.errors.data).toBeDefined();
@@ -27,55 +26,59 @@ describe("image model", function() {
     });
   });
 
-  test.skip("should save image", done => {
-    const Image = ImageModel(conn);
-    const newImage = new Image({
-      data: getFileContent("/test-image.jpeg"),
-      contentType: "image/jpeg",
-      description: "funny"
-    });
-
-    Image.create(newImage, (err, updated) => {
-      expect(updated.data).toBeDefined();
-      expect(updated.contentType).toBe("image/jpeg");
-      expect(updated.description).toBe("funny");
-      expect(updated.createdOn).toBeDefined();
-    });
-  });
-
-  test("should validate when attempt to save image with taken description", done => {
-    const Image = ImageModel(conn);
-    const newImage = new Image({
+  test("should save image", async () => {
+    //Arrange
+    const ImageModel = require("models/image").default;
+    const newImage = new ImageModel({
       data: getFileContent("/test-image.jpeg"),
       contentType: "image/jpeg",
       description: "funny"
     });
 
     // Act
-    Image.create(newImage, (err, updated) => {
-      expect(err).toBeNull();
-      // Act and fail
-      Image.create(newImage, (err, updated) => {
-        expect(err.errors.description).toBeDefined();
-        expect(err.errors.description.message).toBe(
-          "Description already taken"
-        );
-        done();
-      });
-    });
+    const result = await ImageModel.create(newImage);
+
+    // Assert
+    expect(result.data).toBeDefined();
+    expect(result.contentType).toBe("image/jpeg");
+    expect(result.description).toBe("funny");
+    expect(result.createdOn).toBeDefined();
   });
 
-  //After all tests are finished drop database and close connection
-  afterAll(function(done) {
-    conn.db.dropDatabase(function() {
-      conn.close(() => {
-        done();
-      });
+  test("should validate when attempt to save image with description in use", async () => {
+    // Arrange
+    const ImageModel = require("models/image").default;
+    const newImage = new ImageModel({
+      data: getFileContent("/test-image.jpeg"),
+      contentType: "image/jpeg",
+      description: "funny"
     });
+    const result = await ImageModel.create(newImage);
+
+    try {
+      // Act
+      await ImageModel.create(newImage);
+    } catch (error) {
+      // Assert
+      expect(error.errors.description).toBeDefined();
+      expect(error.errors.description.message).toBe(
+        "Description already taken"
+      );
+    }
+  });
+
+  afterAll(done => {
+    conn.close(() => done());
   });
 });
 
 const getFileContent = path => {
   const filePath = __dirname + path;
   return fs.readFileSync(filePath);
+};
+
+const prepareDatabase = async () => {
+  conn = await setupDatabase("mongodb://localhost/testDatabase");
+  jest.doMock("database", () => conn);
+  return conn;
 };

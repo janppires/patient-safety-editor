@@ -1,59 +1,27 @@
-import TopicModel from "models/topic";
+import mongoose from "mongoose";
+import TopicModel, { findAndSort } from "models/topic";
 import { handleError } from "controllers/utils";
 
-export const getAll = conn => {
-  const Topic = TopicModel(conn);
-  return (req, res) => {
-    return Topic.find()
-      .sort({ createdOn: "desc" })
-      .exec((errors, topics) => {
-        res.json(topics);
-      })
-      .catch(handleError(res))
-      .finally(() => res.end());
-  };
+export const getAll = (req, res) => {
+  return findAndSort().then(topics => res.json(topics)).catch(handleError(res));
 };
 
-export const get = conn => {
-  const Topic = TopicModel(conn);
-  return (req, res) => {
-    const { topicId } = req.params;
-    return Topic.findById(topicId)
-      .then(topic => res.json(topic))
-      .catch(handleError(res))
-      .finally(() => res.end());
-  };
+export const get = (req, res) => {
+  const { topicId } = req.params;
+  return TopicModel.findById(topicId)
+    .then(topic => res.json(topic))
+    .catch(handleError(res));
 };
 
-export const create = conn => {
-  const Topic = TopicModel(conn);
-  return (req, res) => {
-    const topic = req.body;
-    return Topic.create(topic)
-      .then(newTopic => res.json(newTopic))
-      .catch(handleError(res))
-      .finally(() => res.end());
-  };
+export const create = (req, res) => {
+  const topic = req.body;
+  return TopicModel.create(topic)
+    .then(newTopic => res.json(newTopic))
+    .catch(handleError(res));
 };
 
-export const update = conn => {
-  const Topic = TopicModel(conn);
-  return (req, res) => {
-    const { pointId } = req.params;
-    const point = req.body;
-    const conditions = {
-      "points._id": pointId
-    };
-    const changes = {
-      $set: {
-        "points.$.name": point.name,
-        "points.$.items": point.items
-      }
-    };
-    return Topic.findOneAndUpdate(conditions, changes)
-      .exec()
-      .then((updated, data) => console.log(updated, data))
-      .catch(handleError(res))
-      .finally(() => res.end());
-  };
+export default {
+  getAll,
+  get,
+  create
 };

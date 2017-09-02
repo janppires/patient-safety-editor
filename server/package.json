@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_PATH=src nodemon -r babel-register server.js",
+    "start": "NODE_PATH=src nodemon -r babel-register src/server.js",
     "test": "NODE_PATH=src jest --env=node --watch"
   },
   "dependencies": {

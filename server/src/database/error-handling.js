@@ -1,22 +1,4 @@
-import mongoose from "mongoose";
-
-mongoose.Promise = global.Promise;
-
-export default async function db(uri) {
-  const connection = await mongoose.createConnection(uri, {
-    useMongoClient: true
-  });
-
-  connection.onOpen(function() {
-    console.log("Mongoose default connection open to " + uri);
-  });
-
-  connectionErrorHandling(connection, uri);
-
-  return connection;
-}
-
-const connectionErrorHandling = (conn, dbURI) => {
+export default (conn, dbURI) => {
   // CONNECTION EVENTS
   // When successfully connected
   conn.on("connected", function() {
