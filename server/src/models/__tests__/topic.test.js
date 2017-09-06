@@ -11,12 +11,24 @@ describe("topic model", function() {
     conn.db.dropDatabase(() => done());
   });
 
-  test("should be invalid if name is empty", function(done) {
+  test("should be invalid if name is missing", function(done) {
     const TopicModel = require("models/topic").default;
     const m = new TopicModel();
 
     m.validate(function(err) {
       expect(err.errors.name).toBeDefined();
+      done();
+    });
+  });
+
+  test("should be invalid if icon is missing", function(done) {
+    const TopicModel = require("models/topic").default;
+    const m = new TopicModel({
+      name: "ai maria"
+    });
+
+    m.validate(function(err) {
+      expect(err.errors.icon).toBeDefined();
       done();
     });
   });
@@ -34,11 +46,23 @@ describe("topic model", function() {
     expect(m.points).toEqual(expect.arrayContaining([]));
   });
 
-  test("should be invalid if a point name is empty", done => {
+  test("should be invalid if a point name is missing", done => {
     const TopicModel = require("models/topic").default;
     const m = new TopicModel({ name: "random", points: [{}] });
     m.validate(function(err) {
       expect(err.errors["points.0.name"]).toBeDefined();
+      done();
+    });
+  });
+
+  test("should be invalid if a point icon is missing", done => {
+    const TopicModel = require("models/topic").default;
+    const m = new TopicModel({
+      name: "random",
+      points: [{ name: "ai maria" }]
+    });
+    m.validate(function(err) {
+      expect(err.errors["points.0.icon"]).toBeDefined();
       done();
     });
   });

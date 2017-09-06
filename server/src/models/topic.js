@@ -9,11 +9,13 @@ const PointItemSchema = new Schema({
 
 const PointSchema = Schema({
   name: { type: String, required: true },
+  icon: { type: String, required: true },
   items: [PointItemSchema]
 });
 
 const TopicSchema = Schema({
   name: { type: String, required: true },
+  icon: { type: String, required: true },
   createdOn: { type: Date, default: Date.now },
   points: [PointSchema]
 });
