@@ -24,13 +24,7 @@
       "console": "integratedTerminal"
     },
     {
-      "type": "node",
-      "request": "attach",
-      "name": "Attach by Process ID",
-      "processId": "${command:PickProcess}"
-    },
-    {
-      "name": "Chrome",
+      "name": "Client: Debug with Chrome",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
@@ -39,5 +33,11 @@
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
       }
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach by Process ID",
+      "processId": "${command:PickProcess}"
     }]
 }

@@ -2,13 +2,9 @@ import React, { PureComponent } from "react";
 import { Button as StrapButton, Tooltip } from "reactstrap";
 
 export default class Button extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      tooltipOpen: false
-    };
-  }
+  state = {
+    tooltipOpen: false
+  };
 
   toggle = () => {
     this.setState({

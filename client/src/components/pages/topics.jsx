@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Col, Row, Container } from "reactstrap";
 import TopicsList from "components/topics/list";
 import PointsList from "components/points/list";
+import NoTopicSelected from "components/topics/no-topic-selected";
 import { fetchTopics } from "redux/modules/topics";
 
 export class TopicsPage extends Component {
@@ -24,11 +25,11 @@ export class TopicsPage extends Component {
     return (
       <Container className="bg-faded" style={styles.container}>
         <Row style={styles.row}>
-          <Col xs="6">
+          <Col xs="6" style={styles.list}>
             <TopicsList />
           </Col>
-          <Col xs="6" className="d-flex flex-column justify-content-center">
-            {showPointsList ? <PointsList /> : <p>Please select one topic</p>}
+          <Col xs="6" style={styles.list}>
+            {showPointsList ? <PointsList /> : <NoTopicSelected />}
           </Col>
         </Row>
       </Container>
@@ -54,5 +55,9 @@ const styles = {
   },
   row: {
     height: 600
+  },
+  list: {
+    display: "flex",
+    flex: 1
   }
 };

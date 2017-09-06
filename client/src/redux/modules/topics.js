@@ -7,8 +7,8 @@ const ADD_TOPIC = "TOPICS/ADD";
 const topic = new schema.Entity("topics");
 const topicsSchema = [topic];
 const topics = [
-  { id: 1, name: "funny topic", points: [{}] },
-  { id: 5, name: "other", points: [{}] }
+  { id: 1, name: "funny topic", points: [] },
+  { id: 5, name: "other", points: [] }
 ];
 
 // reducers

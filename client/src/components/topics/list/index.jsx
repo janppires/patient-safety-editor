@@ -32,7 +32,7 @@ export class TopicsList extends PureComponent {
   render() {
     const { topics, selectedTopic, addTopic } = this.props;
     return (
-      <div>
+      <div style={styles.container}>
         <ListHeader title={"Topics"}>
           <AddItemButton
             onClick={this.handleToggleModal}
@@ -68,3 +68,11 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(TopicsList)
 );
+
+const styles = {
+  container: {
+    display: "flex",
+    flex: 1,
+    flexDirection: "column"
+  }
+};

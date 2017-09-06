@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import {
   Container,
   Collapse,
@@ -9,15 +9,14 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
-import NHSLogo from "components/common/logo-nhs";
+import { NavLink as RRNavLink } from "react-router-dom";
+import LogoNHS from "components/common/logo-nhs";
 
-export default class NavBar extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false
-    };
-  }
+export default class NavBar extends Component {
+  state = {
+    isOpen: false
+  };
+
   toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
@@ -28,18 +27,29 @@ export default class NavBar extends PureComponent {
       <Container>
         <StrapNavBar color="faded" light toggleable fixed="top">
           <NavbarToggler right onClick={this.toggle} />
-          <NavbarBrand href="/">Patient Safety</NavbarBrand>
+          <NavbarBrand tag={RRNavLink} to="/">
+            Patient Safety
+          </NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink href="/">Topics</NavLink>
+                <NavLink tag={RRNavLink} exact to="/topics">
+                  Topics
+                </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/about">About</NavLink>
+                <NavLink tag={RRNavLink} exact to="/images">
+                  Images
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={RRNavLink} exact to="/about">
+                  About
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>
-          <NHSLogo className="d-none d-md-flex" />
+          <LogoNHS className="d-none d-md-flex" />
         </StrapNavBar>
       </Container>
     );
