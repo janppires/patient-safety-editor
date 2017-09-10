@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { getTopics, getTopic, addTopic } from "redux/modules/topics";
+import { topicsSelector, topicSelector, addTopic } from "redux/modules/topics";
 import ListHeader from "components/common/list-header";
 import AddItemButton from "components/common/add-item-button";
 import TopicsListGroup from "components/topics/list/list-group";
@@ -26,7 +26,7 @@ export class TopicsList extends PureComponent {
   };
 
   handleSelectTopic = topic => {
-    this.props.history.push(`/topics/${topic.id}`);
+    this.props.history.push(`/topics/${topic._id}`);
   };
 
   render() {
@@ -56,8 +56,8 @@ export class TopicsList extends PureComponent {
 
 const mapStateToProps = (state, props) => {
   return {
-    topics: getTopics(state),
-    selectedTopic: getTopic(state, props.match.params.topicId)
+    topics: topicsSelector(state),
+    selectedTopic: topicSelector(state, props.match.params.topicId)
   };
 };
 

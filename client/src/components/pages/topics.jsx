@@ -5,15 +5,15 @@ import { Col, Row, Container } from "reactstrap";
 import TopicsList from "components/topics/list";
 import PointsList from "components/points/list";
 import NoTopicSelected from "components/topics/no-topic-selected";
-import { fetchTopics } from "redux/modules/topics";
+import { getTopics } from "redux/modules/topics";
 
 export class TopicsPage extends Component {
   static propTypes = {
-    fetchTopics: PropTypes.func.isRequired
+    getTopics: PropTypes.func.isRequired
   };
 
   componentWillMount() {
-    this.props.fetchTopics();
+    this.props.getTopics();
   }
 
   isTopicSelected = () => {
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTopics: () => dispatch(fetchTopics())
+    getTopics: () => dispatch(getTopics())
   };
 };
 

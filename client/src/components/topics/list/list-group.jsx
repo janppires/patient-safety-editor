@@ -21,7 +21,7 @@ export default class TopicsListGroup extends PureComponent {
       <ListGroup>
         {topics.map(topic =>
           <TopicItem
-            key={topic.id}
+            key={topic._id}
             topic={topic}
             active={this.isTopicActive(topic, selectedTopic)}
             onClick={() => onSelectTopic(topic)}

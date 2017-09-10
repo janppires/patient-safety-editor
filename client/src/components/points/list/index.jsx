@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { getTopic, addTopic } from "redux/modules/topics";
+import { topicSelector, addTopic } from "redux/modules/topics";
 import ListHeader from "components/common/list-header";
 import AddItemButton from "components/common/add-item-button";
 import PointsListGroup from "components/points/list/list-group";
@@ -61,7 +61,7 @@ export class PointsList extends PureComponent {
 
 const mapStateToProps = (state, props) => {
   return {
-    topic: getTopic(state, props.match.params.topicId)
+    topic: topicSelector(state, props.match.params.topicId)
   };
 };
 

@@ -8,6 +8,7 @@ Object {
       "name": "random name",
     },
   },
+  "fetchingStatus": "TOPICS/FETCHED",
   "list": Array [
     2,
   ],
@@ -26,6 +27,7 @@ Object {
       "name": "other 33 topic",
     },
   },
+  "fetchingStatus": "TOPICS/FETCHED",
   "list": Array [
     33,
     2,

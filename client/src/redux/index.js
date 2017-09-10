@@ -1,4 +1,4 @@
-import configureStore, { history } from "./store/configureStore";
+import configureStore, { history } from "./store/configure-store";
 
 const store = configureStore();
 

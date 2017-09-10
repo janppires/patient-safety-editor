@@ -1,7 +1,7 @@
 import topicsReducer, {
   addTopic,
-  getTopics,
-  getTopic
+  topicsSelector,
+  topicSelector
 } from "redux/modules/topics";
 
 describe("reducer: topics.byId ", () => {
@@ -32,20 +32,20 @@ describe("reducer: topics.byId ", () => {
 describe("topics selectors", () => {
   test("get topics array from state", () => {
     const state = prepareStateWithTopics();
-    const topics = getTopics(state);
+    const topics = topicsSelector(state);
     expect(topics).toMatchSnapshot();
   });
 
   test("get undefined topic when topicId is unknown", () => {
     const state = prepareStateWithTopics();
-    const topic = getTopic(state);
+    const topic = topicSelector(state);
     expect(topic).toMatchSnapshot();
   });
 
   test("get topic from id", () => {
     const state = prepareStateWithTopics();
     const topicId = 2;
-    const topic = getTopic(state, topicId);
+    const topic = topicSelector(state, topicId);
     expect(topic).toMatchSnapshot();
   });
 
