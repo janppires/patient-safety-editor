@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`categories selectors get categories array from state 1`] = `
+Array [
+  Object {
+    "name": "random",
+  },
+  Object {
+    "name": "random 2",
+  },
+]
+`;
+
+exports[`categories selectors get category from id 1`] = `
+Object {
+  "name": "random 2",
+}
+`;
+
+exports[`categories selectors get undefined category when categoryId is unknown 1`] = `undefined`;
+
+exports[`reducer: categories.byId  adds new category by id to empty state 1`] = `
+Object {
+  "byId": Object {
+    "2": Object {
+      "id": 2,
+      "name": "random name",
+    },
+  },
+  "fetchingStatus": "CATEGORIES/FETCHED",
+  "list": Array [
+    2,
+  ],
+}
+`;
+
+exports[`reducer: categories.byId  adds new category by id to existing state 1`] = `
+Object {
+  "byId": Object {
+    "2": Object {
+      "id": 2,
+      "name": "random name",
+    },
+    "33": Object {
+      "id": 33,
+      "name": "other 33 category",
+    },
+  },
+  "fetchingStatus": "CATEGORIES/FETCHED",
+  "list": Array [
+    33,
+    2,
+  ],
+}
+`;

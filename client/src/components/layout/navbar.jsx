@@ -33,8 +33,8 @@ export default class NavBar extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
               <NavItem>
-                <NavLink tag={RRNavLink} exact to="/topics">
-                  Topics
+                <NavLink tag={RRNavLink} exact to="/categories">
+                  Category
                 </NavLink>
               </NavItem>
               <NavItem>

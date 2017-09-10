@@ -6,19 +6,19 @@ import {
   ListGroupItemText
 } from "reactstrap";
 
-export default class TopicItem extends PureComponent {
+export default class CategoryItem extends PureComponent {
   static propTypes = {
-    topic: PropTypes.object.isRequired
+    category: PropTypes.object.isRequired
   };
 
-  renderPointsText = topic => {
-    return topic.points
-      ? `Has ${topic.points.length} points`
+  renderPointsText = category => {
+    return category.points
+      ? `Has ${category.points.length} points`
       : "No points added!";
   };
 
   render() {
-    const { topic, ...attributes } = this.props;
+    const { category, ...attributes } = this.props;
     return (
       <ListGroupItem
         className="d-flex flex-column align-items-start"
@@ -26,10 +26,10 @@ export default class TopicItem extends PureComponent {
         {...attributes}
       >
         <ListGroupItemHeading>
-          {topic.name}
+          {category.name}
         </ListGroupItemHeading>
         <ListGroupItemText>
-          {this.renderPointsText(topic)}
+          {this.renderPointsText(category)}
         </ListGroupItemText>
       </ListGroupItem>
     );

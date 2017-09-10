@@ -1,1 +1,1 @@
-export { getTopicsSaga } from "redux/sagas/getTopicsSaga";
+export { getCategoriesSaga } from "redux/sagas/getCategoriesSaga";

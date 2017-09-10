@@ -1,9 +1,9 @@
 const initialState = [
   {
-    title: "Topics Editor",
-    description: "Here you can create or modify topics and points content",
+    title: "Categories Editor",
+    description: "Here you can create or modify categories and points content",
     icon: { name: "MdBorderColor", height: 60 },
-    path: "/topics"
+    path: "/categories"
   },
   {
     title: "Images Manager",

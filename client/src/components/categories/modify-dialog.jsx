@@ -14,13 +14,13 @@ import {
 import IconsSelector from "components/common/icons-selector";
 
 const MODE_LABELS = {
-  edit: { titleText: "Edit Topic", submitText: "Modify" },
-  create: { titleText: "Add New Topic", submitText: "Add" }
+  edit: { titleText: "Edit Category", submitText: "Modify" },
+  create: { titleText: "Add New Category", submitText: "Add" }
 };
 
-export default class ModifyTopicModal extends PureComponent {
+export default class ModifyCategoryModal extends PureComponent {
   static propTypes = {
-    topic: PropTypes.object,
+    category: PropTypes.object,
     mode: PropTypes.string,
     submit: PropTypes.func.isRequired
   };
@@ -30,8 +30,8 @@ export default class ModifyTopicModal extends PureComponent {
   };
 
   state = {
-    name: this.props.topic.name,
-    icon: this.props.topic.icon,
+    name: this.props.category.name,
+    icon: this.props.category.icon,
     titleText: MODE_LABELS[this.props.mode].titleText,
     submitText: MODE_LABELS[this.props.mode].submitText
   };
@@ -46,7 +46,7 @@ export default class ModifyTopicModal extends PureComponent {
     this.props.toggle();
   };
 
-  handleTopicNameInput = ev => {
+  handleCategoryNameInput = ev => {
     this.setState({
       name: ev.target.value
     });
@@ -83,22 +83,22 @@ export default class ModifyTopicModal extends PureComponent {
           <ModalBody>
             <Form>
               <FormGroup row>
-                <Label for="topicName" sm={2}>
+                <Label for="categoryName" sm={2}>
                   Name
                 </Label>
                 <Col sm={10}>
                   <Input
                     type="text"
-                    name="topicName"
-                    id="topicName"
-                    placeholder="Type topic name..."
+                    name="categoryName"
+                    id="categoryName"
+                    placeholder="Type category name..."
                     value={this.state.name}
-                    onChange={this.handleTopicNameInput}
+                    onChange={this.handleCategoryNameInput}
                   />
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label for="topicIcon" sm={2}>
+                <Label for="categoryIcon" sm={2}>
                   Icon
                 </Label>
                 <Col sm={10}>

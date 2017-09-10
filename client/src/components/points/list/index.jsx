@@ -2,12 +2,12 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { topicSelector, addTopic } from "redux/modules/topics";
+import { categorySelector, addCategory } from "redux/modules/categories";
 import ListHeader from "components/common/list-header";
 import AddItemButton from "components/common/add-item-button";
 import PointsListGroup from "components/points/list/list-group";
 import PointsListEmpty from "components/points/points-list-empty";
-import CreateTopicDialog from "components/topics/create-dialog";
+import CreateCategoryDialog from "components/categories/create-dialog";
 
 export class PointsList extends PureComponent {
   static propTypes = {
@@ -29,11 +29,11 @@ export class PointsList extends PureComponent {
     });
   };
 
-  handleSelectPoint = topic => {};
+  handleSelectPoint = category => {};
 
   render() {
-    const { topic, selectedPoint, addPoint } = this.props;
-    const isPointsListEmpty = topic.points.length === 0;
+    const { category, selectedPoint, addPoint } = this.props;
+    const isPointsListEmpty = category.points.length === 0;
     return (
       <div style={styles.container}>
         <ListHeader title={"Points"}>
@@ -43,13 +43,13 @@ export class PointsList extends PureComponent {
           />
         </ListHeader>
         {isPointsListEmpty
-          ? <PointsListEmpty topic={topic} />
+          ? <PointsListEmpty category={category} />
           : <PointsListGroup
-              points={topic.points}
+              points={category.points}
               selectedPoint={selectedPoint}
               onSelectPoint={this.handleSelectPoint}
             />}
-        <CreateTopicDialog
+        <CreateCategoryDialog
           toggle={this.handleToggleModal}
           isOpen={this.state.modal}
           submit={addPoint}
@@ -61,12 +61,12 @@ export class PointsList extends PureComponent {
 
 const mapStateToProps = (state, props) => {
   return {
-    topic: topicSelector(state, props.match.params.topicId)
+    category: categorySelector(state, props.match.params.categoryId)
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  addTopic: topic => dispatch(addTopic(topic))
+  addCategory: category => dispatch(addCategory(category))
 });
 
 export default withRouter(

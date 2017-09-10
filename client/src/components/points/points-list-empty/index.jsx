@@ -3,15 +3,15 @@ import { Alert } from "reactstrap";
 import PropTypes from "prop-types";
 
 const propTypes = {
-  topic: PropTypes.object.isRequired
+  category: PropTypes.object.isRequired
 };
 
 const PointsListEmpty = props => {
-  const { topic } = props;
+  const { category } = props;
   return (
     <div style={styles.container}>
       <Alert className="text-center" color="warning">
-        {topic.name} <strong> is empty.</strong> Please add a new Point.
+        {category.name} <strong> is empty.</strong> Please add a new Point.
       </Alert>
     </div>
   );

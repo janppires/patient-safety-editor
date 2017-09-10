@@ -1,14 +1,14 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import UUID from "node-uuid";
-import ModifyTopicDialog from "components/topics/modify-dialog";
+import ModifyCategoryDialog from "components/categories/modify-dialog";
 
-const getEmptyTopic = () => ({
+const getEmptyCategory = () => ({
   name: "",
   icon: ""
 });
 
-export default class CreateTopicDialog extends PureComponent {
+export default class CreateCategoryDialog extends PureComponent {
   static propTypes = {
     toggle: PropTypes.func.isRequired,
     isOpen: PropTypes.bool.isRequired,
@@ -16,22 +16,22 @@ export default class CreateTopicDialog extends PureComponent {
   };
 
   state = {
-    topic: getEmptyTopic()
+    category: getEmptyCategory()
   };
 
-  handleSubmit = topic => {
-    const newTopic = Object.assign({}, topic, { id: UUID.v4() });
-    this.props.submit(newTopic);
-    this.setState({ topic: getEmptyTopic() });
+  handleSubmit = category => {
+    const newCategory = Object.assign({}, category, { id: UUID.v4() });
+    this.props.submit(newCategory);
+    this.setState({ category: getEmptyCategory() });
   };
 
   render() {
     return (
       <div>
-        <ModifyTopicDialog
+        <ModifyCategoryDialog
           mode="create"
           submit={this.handleSubmit}
-          topic={this.state.topic}
+          category={this.state.category}
           toggle={this.props.toggle}
           isOpen={this.props.isOpen}
         />

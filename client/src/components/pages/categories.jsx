@@ -2,34 +2,34 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Col, Row, Container } from "reactstrap";
-import TopicsList from "components/topics/list";
+import CategoriesList from "components/categories/list";
 import PointsList from "components/points/list";
-import NoTopicSelected from "components/topics/no-topic-selected";
-import { getTopics } from "redux/modules/topics";
+import NoCategorySelected from "components/categories/no-category-selected";
+import { getCategories } from "redux/modules/categories";
 
-export class TopicsPage extends Component {
+export class CategoriesPage extends Component {
   static propTypes = {
-    getTopics: PropTypes.func.isRequired
+    getCategories: PropTypes.func.isRequired
   };
 
   componentWillMount() {
-    this.props.getTopics();
+    this.props.getCategories();
   }
 
-  isTopicSelected = () => {
-    return this.props.match.params.topicId !== undefined;
+  isCategorySelected = () => {
+    return this.props.match.params.categoryId !== undefined;
   };
 
   render() {
-    const showPointsList = this.isTopicSelected();
+    const showPointsList = this.isCategorySelected();
     return (
       <Container className="bg-faded" style={styles.container}>
         <Row style={styles.row}>
           <Col xs="6" style={styles.list}>
-            <TopicsList />
+            <CategoriesList />
           </Col>
           <Col xs="6" style={styles.list}>
-            {showPointsList ? <PointsList /> : <NoTopicSelected />}
+            {showPointsList ? <PointsList /> : <NoCategorySelected />}
           </Col>
         </Row>
       </Container>
@@ -41,11 +41,11 @@ const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTopics: () => dispatch(getTopics())
+    getCategories: () => dispatch(getCategories())
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopicsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoriesPage);
 
 const styles = {
   container: {

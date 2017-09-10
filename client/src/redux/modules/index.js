@@ -1,7 +1,7 @@
-import topics from "redux/modules/topics";
+import categories from "redux/modules/categories";
 import dashboard from "redux/modules/dashboard";
 
 export default {
-  topics,
+  categories,
   dashboard
 };

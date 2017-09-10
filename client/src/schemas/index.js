@@ -1,1 +1,1 @@
-export { topicsSchema } from "./topics";
+export { categoriesSchema } from "./categories";

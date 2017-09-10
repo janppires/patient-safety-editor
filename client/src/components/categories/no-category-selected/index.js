@@ -1,17 +1,17 @@
 import React from "react";
 import { Alert } from "reactstrap";
 
-const NoTopicSelected = () => {
+const NoCategorySelected = () => {
   return (
     <div style={styles.container}>
       <Alert className="text-center" color="warning">
-        Please select one topic from the list
+        Please select one category from the list
       </Alert>
     </div>
   );
 };
 
-export default NoTopicSelected;
+export default NoCategorySelected;
 
 const styles = {
   container: {
