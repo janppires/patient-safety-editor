@@ -6,7 +6,7 @@ describe("points controller", function() {
   test("get specific point by id", async () => {
     // Arrange
     const pointData = { _id: 4, name: "random" };
-    prepareResolvedTopicModelMock(pointData);
+    prepareResolvedCategoryModelMock(pointData);
 
     // Act
     const req = { params: { pointId: 4 } };
@@ -15,14 +15,14 @@ describe("points controller", function() {
     await PointsCtrl.get(req, res);
 
     // Assert
-    const TopicModel = require("models/topic");
-    expect(TopicModel.findOnePoint).toHaveBeenCalledWith(4);
+    const CategoryModel = require("models/category");
+    expect(CategoryModel.findOnePoint).toHaveBeenCalledWith(4);
     expect(res.json).toHaveBeenCalledWith({ _id: 4, name: "random" });
   });
 
   test("given pointId and point data, update specific point", async () => {
     // Arrange
-    prepareResolvedTopicModelMock();
+    prepareResolvedCategoryModelMock();
 
     // Act
     const req = { params: { pointId: 4 }, body: { field: "A" } };
@@ -31,8 +31,8 @@ describe("points controller", function() {
     await PointsCtrl.update(req, res);
 
     // Assert
-    const TopicModel = require("models/topic");
-    expect(TopicModel.findOnePointAndUpdate).toHaveBeenCalledWith(4, {
+    const CategoryModel = require("models/category");
+    expect(CategoryModel.findOnePointAndUpdate).toHaveBeenCalledWith(4, {
       field: "A"
     });
   });
@@ -40,7 +40,7 @@ describe("points controller", function() {
   test("handle errors and returns 500 code", async () => {
     // Arrange
     const error = { message: "random error" };
-    prepareRejectedTopicModelMock(error);
+    prepareRejectedCategoryModelMock(error);
 
     // Act
     const req = { params: { pointId: 4 } };
@@ -63,8 +63,8 @@ describe("points controller", function() {
   });
 });
 
-const prepareResolvedTopicModelMock = pointData => {
-  jest.doMock("models/topic", () => {
+const prepareResolvedCategoryModelMock = pointData => {
+  jest.doMock("models/category", () => {
     const findOnePoint = jest.fn(
       () =>
         new Promise((resolve, reject) => {
@@ -81,8 +81,8 @@ const prepareResolvedTopicModelMock = pointData => {
   });
 };
 
-const prepareRejectedTopicModelMock = error => {
-  jest.doMock("models/topic", () => {
+const prepareRejectedCategoryModelMock = error => {
+  jest.doMock("models/category", () => {
     const findOnePoint = jest.fn(
       () =>
         new Promise((resolve, reject) => {

@@ -2,7 +2,7 @@ import setupDatabase from "database/setup";
 
 let conn = null;
 
-describe("topic model", function() {
+describe("category model", function() {
   beforeAll(async () => {
     await prepareDatabase();
   });
@@ -12,8 +12,8 @@ describe("topic model", function() {
   });
 
   test("should be invalid if name is missing", function(done) {
-    const TopicModel = require("models/topic").default;
-    const m = new TopicModel();
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel();
 
     m.validate(function(err) {
       expect(err.errors.name).toBeDefined();
@@ -22,8 +22,8 @@ describe("topic model", function() {
   });
 
   test("should be invalid if icon is missing", function(done) {
-    const TopicModel = require("models/topic").default;
-    const m = new TopicModel({
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({
       name: "ai maria"
     });
 
@@ -34,21 +34,21 @@ describe("topic model", function() {
   });
 
   test("should add createdOn property", () => {
-    const TopicModel = require("models/topic").default;
-    const m = new TopicModel({ name: "random" });
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({ name: "random" });
     expect(m.createdOn).toBeDefined();
   });
 
   test("should have empty points array", () => {
-    const TopicModel = require("models/topic").default;
-    const m = new TopicModel({ name: "random" });
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({ name: "random" });
     expect(m.points).toBeDefined();
     expect(m.points).toEqual(expect.arrayContaining([]));
   });
 
   test("should be invalid if a point name is missing", done => {
-    const TopicModel = require("models/topic").default;
-    const m = new TopicModel({ name: "random", points: [{}] });
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({ name: "random", points: [{}] });
     m.validate(function(err) {
       expect(err.errors["points.0.name"]).toBeDefined();
       done();
@@ -56,8 +56,8 @@ describe("topic model", function() {
   });
 
   test("should be invalid if a point icon is missing", done => {
-    const TopicModel = require("models/topic").default;
-    const m = new TopicModel({
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({
       name: "random",
       points: [{ name: "ai maria" }]
     });

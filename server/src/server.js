@@ -26,7 +26,7 @@ app.use(
 );
 
 // Routes
-app.use(Routes.topics);
+app.use(Routes.categories);
 app.use(Routes.points);
 app.use(Routes.images);
 

@@ -13,27 +13,27 @@ const PointSchema = Schema({
   items: [PointItemSchema]
 });
 
-const TopicSchema = Schema({
+const CategorySchema = Schema({
   name: { type: String, required: true },
   icon: { type: String, required: true },
   createdOn: { type: Date, default: Date.now },
   points: [PointSchema]
 });
 
-// Virtual for topic's URL
-TopicSchema.virtual("url").get(() => {
-  return "/topics/" + this._id;
+// Virtual for category's URL
+CategorySchema.virtual("url").get(() => {
+  return "/categories/" + this._id;
 });
 
-const TopicModel = db.model("Topic", TopicSchema);
+const CategoryModel = db.model("Category", CategorySchema);
 
-export default TopicModel;
+export default CategoryModel;
 
 //
 // selectors
 
 export const findAndSort = () => {
-  return TopicModel.find().sort({ createdOn: "desc" }).exec();
+  return CategoryModel.find().sort({ createdOn: "desc" }).exec();
 };
 
 export const findOnePointAndUpdate = (pointId, point) => {
@@ -46,15 +46,15 @@ export const findOnePointAndUpdate = (pointId, point) => {
       "points.$.items": point.items
     }
   };
-  return TopicModel.findOneAndUpdate(conditions, changes).exec();
+  return CategoryModel.findOneAndUpdate(conditions, changes).exec();
 };
 
 export const findOnePoint = pointId => {
   const conditions = {
     points: { $elemMatch: { _id: pointId } }
   };
-  return TopicModel.findOne(conditions).then(topic => {
-    const points = topic.points.filter(point => point._id == pointId);
+  return CategoryModel.findOne(conditions).then(category => {
+    const points = category.points.filter(point => point._id == pointId);
     return points[0];
   });
 };

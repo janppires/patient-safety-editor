@@ -1,4 +1,4 @@
-import { findOnePoint, findOnePointAndUpdate } from "models/topic";
+import { findOnePoint, findOnePointAndUpdate } from "models/category";
 import { handleError } from "controllers/utils";
 
 export const get = (req, res) => {
