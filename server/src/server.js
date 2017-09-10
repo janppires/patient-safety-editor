@@ -27,7 +27,7 @@ app.use(
 
 // Routes
 app.use(Routes.categories);
-app.use(Routes.points);
+app.use(Routes.topics);
 app.use(Routes.images);
 
 app.use(function(err, req, res, next) {

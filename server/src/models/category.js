@@ -2,22 +2,22 @@ import mongoose from "mongoose";
 import db from "database";
 const Schema = mongoose.Schema;
 
-const PointItemSchema = new Schema({
+const TopicItemSchema = new Schema({
   text: { type: String, required: true },
   image: { type: String }
 });
 
-const PointSchema = Schema({
+const TopicSchema = Schema({
   name: { type: String, required: true },
   icon: { type: String, required: true },
-  items: [PointItemSchema]
+  items: [TopicItemSchema]
 });
 
 const CategorySchema = Schema({
   name: { type: String, required: true },
   icon: { type: String, required: true },
   createdOn: { type: Date, default: Date.now },
-  points: [PointSchema]
+  topics: [TopicSchema]
 });
 
 // Virtual for category's URL
@@ -36,25 +36,25 @@ export const findAndSort = () => {
   return CategoryModel.find().sort({ createdOn: "desc" }).exec();
 };
 
-export const findOnePointAndUpdate = (pointId, point) => {
+export const findOneTopicAndUpdate = (topicId, topic) => {
   const conditions = {
-    "points._id": pointId
+    "topics._id": topicId
   };
   const changes = {
     $set: {
-      "points.$.name": point.name,
-      "points.$.items": point.items
+      "topics.$.name": topic.name,
+      "topics.$.items": topic.items
     }
   };
   return CategoryModel.findOneAndUpdate(conditions, changes).exec();
 };
 
-export const findOnePoint = pointId => {
+export const findOneTopic = topicId => {
   const conditions = {
-    points: { $elemMatch: { _id: pointId } }
+    topics: { $elemMatch: { _id: topicId } }
   };
   return CategoryModel.findOne(conditions).then(category => {
-    const points = category.points.filter(point => point._id == pointId);
-    return points[0];
+    const topics = category.topics.filter(topic => topic._id == topicId);
+    return topics[0];
   });
 };

@@ -1,38 +1,38 @@
-describe("points controller", function() {
+describe("topic controller", function() {
   beforeEach(() => {
     jest.resetModules();
   });
 
-  test("get specific point by id", async () => {
+  test("get specific topic by id", async () => {
     // Arrange
-    const pointData = { _id: 4, name: "random" };
-    prepareResolvedCategoryModelMock(pointData);
+    const topicData = { _id: 4, name: "random" };
+    prepareResolvedCategoryModelMock(topicData);
 
     // Act
-    const req = { params: { pointId: 4 } };
+    const req = { params: { topicId: 4 } };
     const res = { json: jest.fn(), end: jest.fn() };
-    const PointsCtrl = require("controllers/points.controller");
-    await PointsCtrl.get(req, res);
+    const TopicsCtrl = require("controllers/topics.controller");
+    await TopicsCtrl.get(req, res);
 
     // Assert
     const CategoryModel = require("models/category");
-    expect(CategoryModel.findOnePoint).toHaveBeenCalledWith(4);
+    expect(CategoryModel.findOneTopic).toHaveBeenCalledWith(4);
     expect(res.json).toHaveBeenCalledWith({ _id: 4, name: "random" });
   });
 
-  test("given pointId and point data, update specific point", async () => {
+  test("given topicId and topic data, update specific topic", async () => {
     // Arrange
     prepareResolvedCategoryModelMock();
 
     // Act
-    const req = { params: { pointId: 4 }, body: { field: "A" } };
+    const req = { params: { topicId: 4 }, body: { field: "A" } };
     const res = { json: jest.fn(), end: jest.fn() };
-    const PointsCtrl = require("controllers/points.controller");
-    await PointsCtrl.update(req, res);
+    const TopicsCtrl = require("controllers/topics.controller");
+    await TopicsCtrl.update(req, res);
 
     // Assert
     const CategoryModel = require("models/category");
-    expect(CategoryModel.findOnePointAndUpdate).toHaveBeenCalledWith(4, {
+    expect(CategoryModel.findOneTopicAndUpdate).toHaveBeenCalledWith(4, {
       field: "A"
     });
   });
@@ -43,14 +43,14 @@ describe("points controller", function() {
     prepareRejectedCategoryModelMock(error);
 
     // Act
-    const req = { params: { pointId: 4 } };
+    const req = { params: { topicId: 4 } };
     const send = jest.fn();
     const res = {
       status: jest.fn(() => ({ send })),
       end: jest.fn()
     };
-    const PointsCtrl = require("controllers/points.controller");
-    await PointsCtrl.get(req, res);
+    const TopicsCtrl = require("controllers/topics.controller");
+    await TopicsCtrl.get(req, res);
 
     // Assert
     expect(res.status).toHaveBeenCalledWith(500);
@@ -63,32 +63,32 @@ describe("points controller", function() {
   });
 });
 
-const prepareResolvedCategoryModelMock = pointData => {
+const prepareResolvedCategoryModelMock = topicData => {
   jest.doMock("models/category", () => {
-    const findOnePoint = jest.fn(
+    const findOneTopic = jest.fn(
       () =>
         new Promise((resolve, reject) => {
-          resolve(pointData);
+          resolve(topicData);
         })
     );
-    const findOnePointAndUpdate = jest.fn(
+    const findOneTopicAndUpdate = jest.fn(
       () =>
         new Promise((resolve, reject) => {
-          resolve(pointData);
+          resolve(topicData);
         })
     );
-    return { findOnePoint, findOnePointAndUpdate };
+    return { findOneTopic, findOneTopicAndUpdate };
   });
 };
 
 const prepareRejectedCategoryModelMock = error => {
   jest.doMock("models/category", () => {
-    const findOnePoint = jest.fn(
+    const findOneTopic = jest.fn(
       () =>
         new Promise((resolve, reject) => {
           reject(error);
         })
     );
-    return { findOnePoint };
+    return { findOneTopic };
   });
 };

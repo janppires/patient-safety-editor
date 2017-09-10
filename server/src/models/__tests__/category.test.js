@@ -39,30 +39,30 @@ describe("category model", function() {
     expect(m.createdOn).toBeDefined();
   });
 
-  test("should have empty points array", () => {
+  test("should have empty topics array", () => {
     const CategoryModel = require("models/category").default;
     const m = new CategoryModel({ name: "random" });
-    expect(m.points).toBeDefined();
-    expect(m.points).toEqual(expect.arrayContaining([]));
+    expect(m.topics).toBeDefined();
+    expect(m.topics).toEqual(expect.arrayContaining([]));
   });
 
-  test("should be invalid if a point name is missing", done => {
+  test("should be invalid if a topic name is missing", done => {
     const CategoryModel = require("models/category").default;
-    const m = new CategoryModel({ name: "random", points: [{}] });
+    const m = new CategoryModel({ name: "random", topics: [{}] });
     m.validate(function(err) {
-      expect(err.errors["points.0.name"]).toBeDefined();
+      expect(err.errors["topics.0.name"]).toBeDefined();
       done();
     });
   });
 
-  test("should be invalid if a point icon is missing", done => {
+  test("should be invalid if a topic icon is missing", done => {
     const CategoryModel = require("models/category").default;
     const m = new CategoryModel({
       name: "random",
-      points: [{ name: "ai maria" }]
+      topics: [{ name: "ai maria" }]
     });
     m.validate(function(err) {
-      expect(err.errors["points.0.icon"]).toBeDefined();
+      expect(err.errors["topics.0.icon"]).toBeDefined();
       done();
     });
   });
