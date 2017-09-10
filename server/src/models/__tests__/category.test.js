@@ -11,6 +11,36 @@ describe("category model", function() {
     conn.db.dropDatabase(() => done());
   });
 
+  //After all tests are finished drop database and close connection
+  afterAll(done => {
+    conn.close(() => done());
+  });
+
+  test("should add createdOn property", () => {
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel();
+    expect(m.createdOn).toBeDefined();
+  });
+
+  test("should have empty topics array", () => {
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({ name: "random" });
+    expect(m.topics).toBeDefined();
+    expect(m.topics).toEqual(expect.arrayContaining([]));
+  });
+
+  test("should have virtual 'nameId' field", () => {
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({ name: "Random category" });
+    expect(m.nameId).toBe("random-category");
+  });
+
+  test("should have virtual 'url' field", () => {
+    const CategoryModel = require("models/category").default;
+    const m = new CategoryModel({ name: "Random category" });
+    expect(m.url).toBe("/categories/" + m._id);
+  });
+
   test("should be invalid if name is missing", function(done) {
     const CategoryModel = require("models/category").default;
     const m = new CategoryModel();
@@ -33,19 +63,6 @@ describe("category model", function() {
     });
   });
 
-  test("should add createdOn property", () => {
-    const CategoryModel = require("models/category").default;
-    const m = new CategoryModel({ name: "random" });
-    expect(m.createdOn).toBeDefined();
-  });
-
-  test("should have empty topics array", () => {
-    const CategoryModel = require("models/category").default;
-    const m = new CategoryModel({ name: "random" });
-    expect(m.topics).toBeDefined();
-    expect(m.topics).toEqual(expect.arrayContaining([]));
-  });
-
   test("should be invalid if a topic name is missing", done => {
     const CategoryModel = require("models/category").default;
     const m = new CategoryModel({ name: "random", topics: [{}] });
@@ -65,11 +82,6 @@ describe("category model", function() {
       expect(err.errors["topics.0.icon"]).toBeDefined();
       done();
     });
-  });
-
-  //After all tests are finished drop database and close connection
-  afterAll(done => {
-    conn.close(() => done());
   });
 });
 

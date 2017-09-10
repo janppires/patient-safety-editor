@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
-import CategoryModel, { findAndSort } from "models/category";
+import CategoryModel, {
+  findAndSort,
+  findCategoryAndInsertTopic
+} from "models/category";
 import { handleError } from "controllers/utils";
 
 export const getAll = (req, res) => {
@@ -22,8 +25,17 @@ export const create = (req, res) => {
     .catch(handleError(res));
 };
 
+export const addTopic = (req, res) => {
+  const { categoryId } = req.params;
+  const topic = req.body;
+  return findCategoryAndInsertTopic(categoryId, topic)
+    .then(newCategory => res.json(newCategory))
+    .catch(handleError(res));
+};
+
 export default {
   getAll,
   get,
-  create
+  create,
+  addTopic
 };

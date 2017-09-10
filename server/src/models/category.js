@@ -7,21 +7,54 @@ const TopicItemSchema = new Schema({
   image: { type: String }
 });
 
-const TopicSchema = Schema({
-  name: { type: String, required: true },
-  icon: { type: String, required: true },
-  items: [TopicItemSchema]
+const TopicSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    icon: { type: String, required: true },
+    items: [TopicItemSchema]
+  },
+  {
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret, options) => {
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+      }
+    }
+  }
+);
+
+// TopicSchema Virtuals
+TopicSchema.virtual("url").get(function() {
+  return "/topics/" + this._id;
 });
 
-const CategorySchema = Schema({
-  name: { type: String, required: true },
-  icon: { type: String, required: true },
-  createdOn: { type: Date, default: Date.now },
-  topics: [TopicSchema]
+const CategorySchema = new Schema(
+  {
+    name: { type: String, required: true },
+    icon: { type: String, required: true },
+    createdOn: { type: Date, default: Date.now },
+    topics: [TopicSchema]
+  },
+  {
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret, options) => {
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+      }
+    }
+  }
+);
+
+// CategorySchema Virtuals
+CategorySchema.virtual("nameId").get(function() {
+  return this.name.replace(/\s+/g, "-").toLowerCase();
 });
 
-// Virtual for category's URL
-CategorySchema.virtual("url").get(() => {
+CategorySchema.virtual("url").get(function() {
   return "/categories/" + this._id;
 });
 
@@ -34,6 +67,14 @@ export default CategoryModel;
 
 export const findAndSort = () => {
   return CategoryModel.find().sort({ createdOn: "desc" }).exec();
+};
+
+export const findCategoryAndInsertTopic = (categoryId, topic) => {
+  const changes = {
+    $push: { topics: topic }
+  };
+
+  return CategoryModel.findByIdAndUpdate(categoryId, changes, { new: true });
 };
 
 export const findOneTopicAndUpdate = (topicId, topic) => {

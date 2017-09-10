@@ -7,6 +7,9 @@ router
   .route("/categories")
   .get(CategoriesCtrl.getAll)
   .post(CategoriesCtrl.create);
-router.route("/categories/:categoryId").get(CategoriesCtrl.get);
+router
+  .route("/categories/:categoryId")
+  .get(CategoriesCtrl.get)
+  .post(CategoriesCtrl.addTopic);
 
 export default router;

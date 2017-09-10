@@ -43,7 +43,7 @@ describe("categories controller", function() {
     prepareResolvedCategoryModelMock(categoryMock);
 
     // Act
-    const req = { body: { category: { name: "new name" } } };
+    const req = { body: { name: "new category name" } };
     const res = { json: jest.fn(), end: jest.fn() };
     const CategoriesCtrl = require("controllers/categories.controller");
     await CategoriesCtrl.create(req, res);
@@ -51,8 +51,30 @@ describe("categories controller", function() {
     // Assert
     const CategoryModel = require("models/category");
     expect(CategoryModel.create).toHaveBeenCalledWith({
-      category: { name: "new name" }
+      name: "new category name"
     });
+    expect(res.json).toHaveBeenCalledWith({ name: "random name" });
+  });
+
+  test("add new topic to given category", async () => {
+    // Arrange
+    const categoryMock = { name: "random name" };
+    prepareResolvedCategoryModelMock(categoryMock);
+
+    // Act
+    const req = {
+      body: { name: "new topic name" },
+      params: { categoryId: "randomCategoryId" }
+    };
+    const res = { json: jest.fn(), end: jest.fn() };
+    const CategoriesCtrl = require("controllers/categories.controller");
+    await CategoriesCtrl.addTopic(req, res);
+
+    // Assert
+    const CategoryModel = require("models/category");
+    expect(
+      CategoryModel.findCategoryAndInsertTopic
+    ).toHaveBeenCalledWith("randomCategoryId", { name: "new topic name" });
     expect(res.json).toHaveBeenCalledWith({ name: "random name" });
   });
 });
@@ -77,6 +99,13 @@ const prepareResolvedCategoryModelMock = mockedData => {
           resolve(mockedData);
         })
     );
-    return { findAndSort, findById, create };
+    const findCategoryAndInsertTopic = jest.fn(
+      () =>
+        new Promise((resolve, reject) => {
+          resolve(mockedData);
+        })
+    );
+
+    return { findAndSort, findById, create, findCategoryAndInsertTopic };
   });
 };
