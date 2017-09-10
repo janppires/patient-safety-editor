@@ -12,8 +12,6 @@ const byId = (state = {}, { type, payload }) => {
   switch (type) {
     case SET_CATEGORIES:
       return payload.entities.categories;
-    case ADD_CATEGORY:
-      return Object.assign({}, state, { [payload.id]: payload });
     default:
       return state;
   }
@@ -23,8 +21,6 @@ const list = (state = [], { type, payload }) => {
   switch (type) {
     case SET_CATEGORIES:
       return payload.result;
-    case ADD_CATEGORY:
-      return [...state, payload.id];
     default:
       return state;
   }

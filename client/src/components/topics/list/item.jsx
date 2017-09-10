@@ -21,9 +21,7 @@ export default class TopicItem extends PureComponent {
         <ListGroupItemHeading>
           {topic.name}
         </ListGroupItemHeading>
-        <ListGroupItemText>
-          <p>Fantastic</p>
-        </ListGroupItemText>
+        <ListGroupItemText>Fantastic</ListGroupItemText>
       </ListGroupItem>
     );
   }

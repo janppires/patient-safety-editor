@@ -21,7 +21,7 @@ export default class CategoriesListGroup extends PureComponent {
       <ListGroup>
         {categories.map(category =>
           <CategoryItem
-            key={category._id}
+            key={category.id}
             category={category}
             active={this.isCategoryActive(category, selectedCategory)}
             onClick={() => onSelectCategory(category)}

@@ -21,26 +21,15 @@ exports[`categories selectors get undefined category when categoryId is unknown 
 
 exports[`reducer: categories.byId  adds new category by id to empty state 1`] = `
 Object {
-  "byId": Object {
-    "2": Object {
-      "id": 2,
-      "name": "random name",
-    },
-  },
+  "byId": Object {},
   "fetchingStatus": "CATEGORIES/FETCHED",
-  "list": Array [
-    2,
-  ],
+  "list": Array [],
 }
 `;
 
 exports[`reducer: categories.byId  adds new category by id to existing state 1`] = `
 Object {
   "byId": Object {
-    "2": Object {
-      "id": 2,
-      "name": "random name",
-    },
     "33": Object {
       "id": 33,
       "name": "other 33 category",
@@ -49,7 +38,6 @@ Object {
   "fetchingStatus": "CATEGORIES/FETCHED",
   "list": Array [
     33,
-    2,
   ],
 }
 `;

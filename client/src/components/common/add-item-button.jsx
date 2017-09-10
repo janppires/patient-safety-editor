@@ -1,19 +1,21 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import Button from "components/common/button";
 
 class AddItemButton extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.tooltip = { text: props.tooltip };
-  }
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
+  };
+
   render() {
-    const { onClick } = this.props;
+    const { onClick, tooltip, id } = this.props;
     return (
       <div>
         <Button
-          id={"add-item-button"}
+          id={id}
           color="danger"
-          tooltip={this.tooltip}
+          tooltip={{ text: tooltip }}
           onClick={onClick}
         >
           +

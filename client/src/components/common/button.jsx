@@ -1,15 +1,10 @@
 import React, { PureComponent } from "react";
-import { Button as StrapButton, Tooltip } from "reactstrap";
+import PropTypes from "prop-types";
+import { Button as StrapButton, UncontrolledTooltip } from "reactstrap";
 
 export default class Button extends PureComponent {
-  state = {
-    tooltipOpen: false
-  };
-
-  toggle = () => {
-    this.setState({
-      tooltipOpen: !this.state.tooltipOpen
-    });
+  static propTypes = {
+    id: PropTypes.string.isRequired
   };
 
   render() {
@@ -19,15 +14,13 @@ export default class Button extends PureComponent {
         <StrapButton id={id} {...button}>
           {children}
         </StrapButton>
-        <Tooltip
+        <UncontrolledTooltip
           placement="bottom"
-          isOpen={this.state.tooltipOpen}
           target={id}
-          toggle={this.toggle}
           delay={{ show: 0, hide: 100 }}
         >
           {tooltip.text}
-        </Tooltip>
+        </UncontrolledTooltip>
       </div>
     );
   }
