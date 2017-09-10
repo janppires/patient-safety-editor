@@ -5,18 +5,18 @@ import { withRouter } from "react-router";
 import { categorySelector, addCategory } from "redux/modules/categories";
 import ListHeader from "components/common/list-header";
 import AddItemButton from "components/common/add-item-button";
-import PointsListGroup from "components/points/list/list-group";
-import PointsListEmpty from "components/points/points-list-empty";
+import TopicsListGroup from "components/topics/list/list-group";
+import TopicsListEmpty from "components/topics/topics-list-empty";
 import CreateCategoryDialog from "components/categories/create-dialog";
 
-export class PointsList extends PureComponent {
+export class TopicsList extends PureComponent {
   static propTypes = {
-    points: PropTypes.array.isRequired,
-    selectedPoint: PropTypes.object,
-    toggleAddPointModal: PropTypes.func.isRequired,
-    onSelectPoint: PropTypes.func.isRequired,
-    isAddPointModalOpen: PropTypes.bool.isRequired,
-    addPoint: PropTypes.func.isRequired
+    topics: PropTypes.array.isRequired,
+    selectedTopic: PropTypes.object,
+    toggleAddTopicModal: PropTypes.func.isRequired,
+    onSelectTopic: PropTypes.func.isRequired,
+    isAddTopicModalOpen: PropTypes.bool.isRequired,
+    addTopic: PropTypes.func.isRequired
   };
 
   state = {
@@ -29,30 +29,30 @@ export class PointsList extends PureComponent {
     });
   };
 
-  handleSelectPoint = category => {};
+  handleSelectTopic = category => {};
 
   render() {
-    const { category, selectedPoint, addPoint } = this.props;
-    const isPointsListEmpty = category.points.length === 0;
+    const { category, selectedTopic, addTopic } = this.props;
+    const isTopicsListEmpty = category.topics.length === 0;
     return (
       <div style={styles.container}>
-        <ListHeader title={"Points"}>
+        <ListHeader title={"Topics"}>
           <AddItemButton
             onClick={this.handleToggleModal}
-            tooltip={"Add Point"}
+            tooltip={"Add Topic"}
           />
         </ListHeader>
-        {isPointsListEmpty
-          ? <PointsListEmpty category={category} />
-          : <PointsListGroup
-              points={category.points}
-              selectedPoint={selectedPoint}
-              onSelectPoint={this.handleSelectPoint}
+        {isTopicsListEmpty
+          ? <TopicsListEmpty category={category} />
+          : <TopicsListGroup
+              topics={category.topics}
+              selectedTopic={selectedTopic}
+              onSelectTopic={this.handleSelectTopic}
             />}
         <CreateCategoryDialog
           toggle={this.handleToggleModal}
           isOpen={this.state.modal}
-          submit={addPoint}
+          submit={addTopic}
         />
       </div>
     );
@@ -70,7 +70,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PointsList)
+  connect(mapStateToProps, mapDispatchToProps)(TopicsList)
 );
 
 const styles = {

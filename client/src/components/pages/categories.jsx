@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Col, Row, Container } from "reactstrap";
 import CategoriesList from "components/categories/list";
-import PointsList from "components/points/list";
+import TopicsList from "components/topics/list";
 import NoCategorySelected from "components/categories/no-category-selected";
 import { getCategories } from "redux/modules/categories";
 
@@ -21,7 +21,7 @@ export class CategoriesPage extends Component {
   };
 
   render() {
-    const showPointsList = this.isCategorySelected();
+    const showTopicsList = this.isCategorySelected();
     return (
       <Container className="bg-faded" style={styles.container}>
         <Row style={styles.row}>
@@ -29,7 +29,7 @@ export class CategoriesPage extends Component {
             <CategoriesList />
           </Col>
           <Col xs="6" style={styles.list}>
-            {showPointsList ? <PointsList /> : <NoCategorySelected />}
+            {showTopicsList ? <TopicsList /> : <NoCategorySelected />}
           </Col>
         </Row>
       </Container>

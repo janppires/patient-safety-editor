@@ -6,12 +6,12 @@ import {
   ListGroupItemText
 } from "reactstrap";
 
-export default class PointItem extends PureComponent {
+export default class TopicItem extends PureComponent {
   static propTypes = {
-    point: PropTypes.object.isRequired
+    topic: PropTypes.object.isRequired
   };
   render() {
-    const { point, ...attributes } = this.props;
+    const { topic, ...attributes } = this.props;
     return (
       <ListGroupItem
         className="d-flex flex-column align-items-start"
@@ -19,7 +19,7 @@ export default class PointItem extends PureComponent {
         {...attributes}
       >
         <ListGroupItemHeading>
-          {point.name}
+          {topic.name}
         </ListGroupItemHeading>
         <ListGroupItemText>
           <p>Fantastic</p>

@@ -11,10 +11,10 @@ export default class CategoryItem extends PureComponent {
     category: PropTypes.object.isRequired
   };
 
-  renderPointsText = category => {
-    return category.points
-      ? `Has ${category.points.length} points`
-      : "No points added!";
+  renderTopicsText = category => {
+    return category.topics
+      ? `Has ${category.topics.length} topics`
+      : "No topics added!";
   };
 
   render() {
@@ -29,7 +29,7 @@ export default class CategoryItem extends PureComponent {
           {category.name}
         </ListGroupItemHeading>
         <ListGroupItemText>
-          {this.renderPointsText(category)}
+          {this.renderTopicsText(category)}
         </ListGroupItemText>
       </ListGroupItem>
     );

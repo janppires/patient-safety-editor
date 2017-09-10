@@ -6,20 +6,20 @@ const propTypes = {
   category: PropTypes.object.isRequired
 };
 
-const PointsListEmpty = props => {
+const TopicsListEmpty = props => {
   const { category } = props;
   return (
     <div style={styles.container}>
       <Alert className="text-center" color="warning">
-        {category.name} <strong> is empty.</strong> Please add a new Point.
+        {category.name} <strong> is empty.</strong> Please add a new Topic.
       </Alert>
     </div>
   );
 };
 
-PointsListEmpty.propTypes = propTypes;
+TopicsListEmpty.propTypes = propTypes;
 
-export default PointsListEmpty;
+export default TopicsListEmpty;
 
 const styles = {
   container: {
