@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import db from "database";
+
 const Schema = mongoose.Schema;
+const CATEGORY_MODEL_NAME = "Category";
 
 const TopicItemSchema = new Schema({
   text: { type: String, required: true },
@@ -30,9 +32,19 @@ TopicSchema.virtual("url").get(function() {
   return "/topics/" + this._id;
 });
 
+const categoryNameValidator = function(name) {
+  return this.db.models[CATEGORY_MODEL_NAME]
+    .count({ name })
+    .then(count => count == 0);
+};
+
 const CategorySchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: {
+      type: String,
+      required: [true, "A category name is required!"],
+      validate: [categoryNameValidator, "Category name already taken"]
+    },
     icon: { type: String, required: true },
     createdOn: { type: Date, default: Date.now },
     topics: [TopicSchema]
@@ -66,7 +78,7 @@ export default CategoryModel;
 // selectors
 
 export const findAndSort = () => {
-  return CategoryModel.find().sort({ createdOn: "desc" }).exec();
+  return CategoryModel.find().sort({ createdOn: "asc" }).exec();
 };
 
 export const findCategoryAndInsertTopic = (categoryId, topic) => {
