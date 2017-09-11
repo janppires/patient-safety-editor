@@ -4,14 +4,20 @@ export const FETCHING = "CATEGORIES/FETCHING";
 export const FETCHED = "CATEGORIES/FETCHED";
 const SET_CATEGORIES_FETCH_STATUS = "CATEGORIES/FETCH_STATUS";
 export const GET_CATEGORIES = "CATEGORIES/GET";
-const ADD_CATEGORY = "CATEGORIES/ADD";
+export const ADD_CATEGORY = "CATEGORIES/ADD";
 const SET_CATEGORIES = "CATEGORIES/SET";
+const SET_CATEGORY = "CATEGORIES/SET_NEW";
 
 // reducers
 const byId = (state = {}, { type, payload }) => {
   switch (type) {
     case SET_CATEGORIES:
       return payload.entities.categories;
+    case SET_CATEGORY:
+      return {
+        ...state,
+        [payload.id]: payload
+      };
     default:
       return state;
   }
@@ -21,6 +27,8 @@ const list = (state = [], { type, payload }) => {
   switch (type) {
     case SET_CATEGORIES:
       return payload.result;
+    case SET_CATEGORY:
+      return [...state, payload.id];
     default:
       return state;
   }
@@ -53,6 +61,11 @@ export const setCategories = categories => ({
 
 export const addCategory = category => ({
   type: ADD_CATEGORY,
+  payload: category
+});
+
+export const setCategory = category => ({
+  type: SET_CATEGORY,
   payload: category
 });
 
