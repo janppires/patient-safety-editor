@@ -17,10 +17,12 @@ export default class TopicsList extends PureComponent {
     this.props.history.push(`/topics/new`);
   };
 
-  handleSelectTopic = category => {};
+  handleSelectTopic = category => topic => {
+    this.props.history.push(`/categories/${category.nameId}/${topic.id}`);
+  };
 
   render() {
-    const { isTopicsListEmpty, category, selectedTopic } = this.props;
+    const { isTopicsListEmpty, selectedCategory, selectedTopic } = this.props;
     return (
       <div style={styles.container}>
         <ListHeader title={"Topics"}>
@@ -31,11 +33,11 @@ export default class TopicsList extends PureComponent {
           />
         </ListHeader>
         {isTopicsListEmpty
-          ? <TopicsListEmpty category={category} />
+          ? <TopicsListEmpty category={selectedCategory} />
           : <TopicsListGroup
-              topics={category.topics}
+              topics={selectedCategory.topics}
               selectedTopic={selectedTopic}
-              onSelectTopic={this.handleSelectTopic}
+              onSelectTopic={this.handleSelectTopic(selectedCategory)}
             />}
       </div>
     );

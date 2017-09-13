@@ -1,13 +1,20 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { categorySelector, addCategory } from "redux/modules/categories";
+import {
+  categorySelector,
+  topicSelector,
+  addCategory
+} from "redux/modules/categories";
 import TopicsList from "./list-display";
 
-const mapStateToProps = (state, props) => {
-  const category = categorySelector(state, props.match.params.categoryId);
-  const isTopicsListEmpty = category.topics.length === 0;
+const mapStateToProps = (state, { match }) => {
+  const { params } = match;
+  const selectedCategory = categorySelector(state, params.categoryId);
+  const selectedTopic = topicSelector(state, params.categoryId, params.topicId);
+  const isTopicsListEmpty = selectedCategory.topics.length === 0;
   return {
-    category,
+    selectedCategory,
+    selectedTopic,
     isTopicsListEmpty
   };
 };

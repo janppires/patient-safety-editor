@@ -16,7 +16,7 @@ const byId = (state = {}, { type, payload }) => {
     case SET_CATEGORY:
       return {
         ...state,
-        [payload.id]: payload
+        [payload.nameId]: payload
       };
     default:
       return state;
@@ -28,7 +28,7 @@ const list = (state = [], { type, payload }) => {
     case SET_CATEGORIES:
       return payload.result;
     case SET_CATEGORY:
-      return [...state, payload.id];
+      return [...state, payload.nameId];
     default:
       return state;
   }
@@ -78,6 +78,14 @@ export const setFechingStatus = status => ({
 export const categoriesSelector = globalState => {
   const ids = getIdsListState(globalState);
   return ids.map(id => getCategoryByIdState(globalState, id));
+};
+
+export const topicSelector = (globalState, categoryNameId, topicId) => {
+  const category = categorySelector(globalState, categoryNameId);
+  if (category) {
+    return category.topics.find(t => t.id === topicId);
+  }
+  return null;
 };
 
 export const categorySelector = (globalState, id) => {

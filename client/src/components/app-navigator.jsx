@@ -11,7 +11,10 @@ const AppNavigator = ({ history }) =>
   <ConnectedRouter history={history}>
     <Layout>
       <Route exact path="/" component={HomePage} />
-      <Route path="/categories/:categoryId?" component={CategoriesPage} />
+      <Route
+        path="/categories/:categoryId?/:topicId?"
+        component={CategoriesPage}
+      />
     </Layout>
   </ConnectedRouter>;
 
