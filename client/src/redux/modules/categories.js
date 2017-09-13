@@ -83,7 +83,7 @@ export const categoriesSelector = globalState => {
 export const topicSelector = (globalState, categoryNameId, topicId) => {
   const category = categorySelector(globalState, categoryNameId);
   if (category) {
-    return category.topics.find(t => t.id === topicId);
+    return category.topics.find(t => t.nameId === topicId);
   }
   return null;
 };

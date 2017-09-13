@@ -7,7 +7,6 @@ import TopicsListEmpty from "components/topics/topics-list-empty";
 
 export default class TopicsList extends PureComponent {
   static propTypes = {
-    category: PropTypes.object.isRequired,
     selectedTopic: PropTypes.object,
     isTopicsListEmpty: PropTypes.bool.isRequired,
     addCategory: PropTypes.func.isRequired
@@ -18,7 +17,7 @@ export default class TopicsList extends PureComponent {
   };
 
   handleSelectTopic = category => topic => {
-    this.props.history.push(`/categories/${category.nameId}/${topic.id}`);
+    this.props.history.push(`/categories/${category.nameId}/${topic.nameId}`);
   };
 
   render() {
