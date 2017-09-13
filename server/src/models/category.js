@@ -28,6 +28,10 @@ const TopicSchema = new Schema(
 );
 
 // TopicSchema Virtuals
+TopicSchema.virtual("nameId").get(function() {
+  return this.name.replace(/\s+/g, "-").toLowerCase();
+});
+
 TopicSchema.virtual("url").get(function() {
   return "/topics/" + this._id;
 });
@@ -70,7 +74,7 @@ CategorySchema.virtual("url").get(function() {
   return "/categories/" + this._id;
 });
 
-const CategoryModel = db.model("Category", CategorySchema);
+const CategoryModel = db.model(CATEGORY_MODEL_NAME, CategorySchema);
 
 export default CategoryModel;
 
