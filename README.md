@@ -1,5 +1,7 @@
 # Patient Safety Editor
 
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 A webapp aiming to edit a json document containing clinical guidelines and medical protocols, to be used with [PatientSafety](https://github.com/janppires/PatientSafety) mobile app.
 
 # Technologies
