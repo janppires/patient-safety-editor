@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as MDPack from "react-icons/lib/md";
+import * as MdIconPack from "react-icons/lib/md";
 
 const Icon = ({ name, ...props }) => {
-  const PackIcon = MDPack[name];
+  const PackIcon = MdIconPack[name];
   return <PackIcon {...props} />;
 };
 

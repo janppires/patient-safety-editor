@@ -1,15 +1,16 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { routerReducer, routerMiddleware } from "react-router-redux";
-import createHistory from "history/createBrowserHistory";
+// import createHistory from "history/createBrowserHistory";
+import history2 from "redux/store/history";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import { initSagas } from "redux/init-sagas";
 import reducers from "redux/modules";
 
 // Create a history of your choosing (we're using a browser history in this case)
-export const history = createHistory();
+// export const history = createHistory();
 
-const historyRouterMiddleware = routerMiddleware(history);
+const historyRouterMiddleware = routerMiddleware(history2);
 
 const sagaMiddleware = createSagaMiddleware();
 

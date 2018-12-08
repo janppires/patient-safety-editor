@@ -13,11 +13,11 @@ export default class TopicsList extends PureComponent {
   };
 
   handleAddTopic = () => {
-    this.props.history.push(`/topics/new`);
+    this.props.goTo(`/topics/new`);
   };
 
   handleSelectTopic = category => topic => {
-    this.props.history.push(`/categories/${category.nameId}/${topic.nameId}`);
+    this.props.goTo(`/categories/${category.nameId}/${topic.nameId}`);
   };
 
   render() {
@@ -36,6 +36,7 @@ export default class TopicsList extends PureComponent {
           : <TopicsListGroup
               topics={selectedCategory.topics}
               selectedTopic={selectedTopic}
+              selectedCategory={selectedCategory}
               onSelectTopic={this.handleSelectTopic(selectedCategory)}
             />}
       </div>

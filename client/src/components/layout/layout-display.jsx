@@ -3,6 +3,7 @@ import { Container } from "reactstrap";
 import AppNavBar from "components/layout/navbar";
 import Footer from "components/layout/footer";
 import StatusPanel from "components/layout/status-panel";
+import ModalDialogs from "components/layout/modal-dialogs";
 
 export default class Layout extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class Layout extends Component {
           <StatusPanel style={styles.status} />
           {children}
         </Container>
+        <ModalDialogs />
         <Footer />
       </div>
     );

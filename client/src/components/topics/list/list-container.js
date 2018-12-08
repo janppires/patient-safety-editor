@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { push } from "react-router-redux";
 import {
   categorySelector,
   topicSelector,
@@ -20,7 +21,8 @@ const mapStateToProps = (state, { match }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addCategory: category => dispatch(addCategory(category))
+  addCategory: category => dispatch(addCategory(category)),
+  goTo: url => dispatch(push(url))
 });
 
 export default withRouter(

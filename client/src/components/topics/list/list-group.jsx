@@ -7,6 +7,7 @@ class TopicsListGroup extends PureComponent {
   static propTypes = {
     topics: PropTypes.array.isRequired,
     selectedTopic: PropTypes.object,
+    selectedCategory: PropTypes.object,
     onSelectTopic: PropTypes.func.isRequired
   };
 
@@ -15,13 +16,19 @@ class TopicsListGroup extends PureComponent {
   };
 
   render() {
-    const { topics, selectedTopic, onSelectTopic } = this.props;
+    const {
+      topics,
+      selectedTopic,
+      selectedCategory,
+      onSelectTopic
+    } = this.props;
 
     return (
       <ListGroup>
         {topics.map(topic =>
           <TopicItem
             key={topic.id}
+            category={selectedCategory}
             topic={topic}
             active={this.isTopicActive(topic, selectedTopic)}
             onClick={() => onSelectTopic(topic)}

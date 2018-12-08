@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { clearStatus, statusSelector } from "redux/modules/app-status";
 import StatusPanel from "./status-panel-display";
 
@@ -18,6 +17,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(StatusPanel)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(StatusPanel);
